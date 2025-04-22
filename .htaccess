@@ -1,13 +1,7 @@
 RewriteEngine On
-RewriteBase /medkit3-v2
-
-# Allow direct access to files
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# Route all other requests through index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php/$1 [L]
 
 # Security Headers
 <IfModule mod_headers.c>
