@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://localhost/medkit3-v2/';
+    public string $baseURL = 'http://localhost/p37-medkit-ci4-pas/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
