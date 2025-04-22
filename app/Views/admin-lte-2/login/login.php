@@ -4,7 +4,7 @@
     <section class="content">
       <div class="row">
         <div class="col-lg-8">
-          <div class="box box-primary">
+          <div class="box box-primary rounded-0">
             <div class="box-header with-border">
               <h3 class="box-title">ALUR PENDAFTARAN</h3>
             </div>
@@ -15,39 +15,45 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <?php
-          pre($Pengaturan);
-          ?>
-          <div class="box box-primary">
+          <div class="box box-primary rounded-0">
             <div class="box-header with-border text-center">
               <a href="https://esensia.co.id" class="h1"><img
                   src="https://perjanjian.esensia.co.id/assets/theme/admin-lte-3/dist/img/logo-header-es1.png"
-                  alt="KLINIK UTAMA &amp; LABORATORIUM " esensia"="" logo"="" class="brand-image img-rounded"
+                  alt="<?= $Pengaturan->judul?>" class="brand-image img-rounded"
                   style="width: 209px; height: 94px; background-color: #fff;"></a>
             </div>
             <div class="box-body">
-              <?= form_open('auth/cek_login', ['autocomplete' => 'off', 'id' => 'login_form']) ?>
-              <div class="form-group ">
-                <label for="exampleInputPassword1">No. RM</label>
+              <?= form_open('auth/cek_login', [
+                'id' => 'login_form',
+                'method' => 'post',
+                'autocomplete' => 'off'
+              ]) ?>
+              <?= csrf_field() ?>
+              <div class="form-group">
+                <label for="user">No. RM</label>
                 <div class="input-group">
                   <?= form_input([
                     'name' => 'user',
+                    'id' => 'user',
                     'class' => 'form-control',
                     'placeholder' => 'Gunakan No RM anda (cth: pke00001) ...',
-                    'value' => set_value('user')
+                    'value' => set_value('user'),
+                    'required' => true
                   ]) ?>
                   <span class="input-group-addon"><i class="fa fa-user-alt"></i></span>
                 </div>
               </div>
-              <div class="form-group ">
-                <label for="exampleInputPassword1">Kata Sandi</label>
+              <div class="form-group">
+                <label for="pass">Kata Sandi</label>
                 <div class="input-group">
-                  <?= form_password([
+                  <?= form_input([
+                    'type' => 'text',
                     'name' => 'pass',
                     'id' => 'tgl',
-                    'class' => 'form-control datepicker',
+                    'class' => 'form-control',
                     'placeholder' => 'Gunakan Tgl Lahir (cth: 17-08-1945) ...',
-                    'readonly' => 'readonly'
+                    'readonly' => 'readonly',
+                    'required' => true
                   ]) ?>
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
@@ -68,6 +74,7 @@
                 <div class="col-xs-4">
                   <button type="submit" id="submitBtn" class="btn btn-primary btn-block btn-flat">
                     <span>Masuk</span>
+                    <i class="fa fa-spinner fa-spin d-none"></i>
                   </button>
                 </div>
                 <!-- /.col -->
@@ -77,7 +84,7 @@
             <div class="box-footer">
               <div class="social-auth-links text-center">
                 <p>- ATAU -</p>
-                <a href="https://perjanjian.esensia.co.id/pasien/pendaftaran_baru.php"
+                <a href="<?= base_url('pasien/daftar_baru') ?>"
                   class="btn btn-block btn-primary btn-flat"><i class="fa fa-user-plus"></i> PASIEN BARU</a>
               </div>
             </div>
@@ -100,7 +107,7 @@
 <script src="<?= base_url('public/assets/plugins/iCheck/icheck.min.js') ?>"></script>
 
 <!-- Add reCAPTCHA v3 -->
-<!-- <script src="https://www.google.com/recaptcha/api.js?render=<?= config('Recaptcha')->siteKey ?>"></script> -->
+<script src="https://www.google.com/recaptcha/api.js?render=<?= config('Recaptcha')->siteKey ?>"></script>
 <script>
   // Initialize iCheck
   $(document).ready(function () {
@@ -160,6 +167,53 @@
           btnLoader.classList.add('d-none');
           form.classList.remove('loading');
         });
+    });
+  });
+
+  // Form submission handling
+  $(document).ready(function() {
+    $('#login_form').on('submit', function(e) {
+      e.preventDefault();
+      
+      var form = $(this);
+      var submitBtn = $('#submitBtn');
+      var btnText = submitBtn.find('span');
+      var btnLoader = submitBtn.find('i');
+      
+      // Disable button and show loader
+      submitBtn.prop('disabled', true);
+      btnText.addClass('d-none');
+      btnLoader.removeClass('d-none');
+      
+      // Submit form via AJAX
+      $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            window.location.href = response.redirect || '<?= base_url('dashboard') ?>';
+          } else {
+            // Show error message
+            alert(response.message || 'Login gagal. Silakan coba lagi.');
+            
+            // Reset button state
+            submitBtn.prop('disabled', false);
+            btnText.removeClass('d-none');
+            btnLoader.addClass('d-none');
+          }
+        },
+        error: function(xhr, status, error) {
+          // Show error message
+          alert('Terjadi kesalahan. Silakan coba lagi.');
+          
+          // Reset button state
+          submitBtn.prop('disabled', false);
+          btnText.removeClass('d-none');
+          btnLoader.addClass('d-none');
+        }
+      });
     });
   });
 </script>

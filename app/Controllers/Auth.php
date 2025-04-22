@@ -44,6 +44,7 @@ class Auth extends BaseController
         $data = [
             'title'         => 'Login',
             'Pengaturan'    => $this->pengaturan,
+            'breadcrumbs'   => 'login/breadcrumbs',
             'view'          => 'login/login'  // Will be prefixed with admin-lte-2/
         ];
 
@@ -59,26 +60,15 @@ class Auth extends BaseController
         $user = $this->request->getVar('user');
         $pass = $this->request->getVar('pass');
         $inga = $this->request->getVar('ingat');
-        $recaptchaResponse = $this->request->getVar('recaptcha_response');
-        
-        # Verify reCAPTCHA
-        $recaptcha = $this->recaptcha->setExpectedHostname($_SERVER['SERVER_NAME'])
-                                    ->setScoreThreshold(config('Recaptcha')->score)
-                                    ->verify($recaptchaResponse, $_SERVER['REMOTE_ADDR']);
-
-        if (!$recaptcha->isSuccess()) {
-            return redirect()->back()->with('error', 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.');
-        }
-
-        if ($recaptcha->getScore() < config('Recaptcha')->score) {
-            return redirect()->back()->with('error', 'Skor reCAPTCHA terlalu rendah. Silakan coba lagi.');
-        }
         
         # Check if user exists first
         $cek = $this->ionAuth->usernameCheck($user);
         
         if (!$cek) {
-            return redirect()->back()->with('error', 'ID Pengguna atau Kata Sandi salah!');
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'ID Pengguna atau Kata Sandi salah!'
+            ]);
         }
 
         # Try to login
@@ -86,10 +76,17 @@ class Auth extends BaseController
         $login = $this->ionAuth->login($user, $pass, $inget_ya);
 
         if(!$login) {
-            return redirect()->back()->with('error', 'ID Pengguna atau Kata Sandi salah!');
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'ID Pengguna atau Kata Sandi salah!'
+            ]);
         }
 
-        return redirect()->to('/dashboard')->with('success', 'Login berhasil!');
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => 'Login berhasil!',
+            'redirect' => base_url('dashboard')
+        ]);
     }
 
     public function logout()
