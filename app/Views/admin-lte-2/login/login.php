@@ -28,7 +28,6 @@
                 'method' => 'post',
                 'autocomplete' => 'off'
               ]) ?>
-              <?= csrf_field() ?>
               <div class="form-group">
                 <label for="user">No. RM</label>
                 <div class="input-group">
@@ -74,7 +73,6 @@
                 <div class="col-xs-4">
                   <button type="submit" id="submitBtn" class="btn btn-primary btn-block btn-flat">
                     <span>Masuk</span>
-                    <i class="fa fa-spinner fa-spin d-none"></i>
                   </button>
                 </div>
                 <!-- /.col -->
@@ -170,50 +168,80 @@
     });
   });
 
-  // Form submission handling
+  // Add toastr configuration and form handling
   $(document).ready(function() {
+    // Configure toastr
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    // Form submission handling
     $('#login_form').on('submit', function(e) {
-      e.preventDefault();
-      
-      var form = $(this);
-      var submitBtn = $('#submitBtn');
-      var btnText = submitBtn.find('span');
-      var btnLoader = submitBtn.find('i');
-      
-      // Disable button and show loader
-      submitBtn.prop('disabled', true);
-      btnText.addClass('d-none');
-      btnLoader.removeClass('d-none');
-      
-      // Submit form via AJAX
-      $.ajax({
-        url: form.attr('action'),
-        type: 'POST',
-        data: form.serialize(),
-        dataType: 'json',
-        success: function(response) {
-          if (response.success) {
-            window.location.href = response.redirect || '<?= base_url('dashboard') ?>';
-          } else {
-            // Show error message
-            alert(response.message || 'Login gagal. Silakan coba lagi.');
-            
-            // Reset button state
-            submitBtn.prop('disabled', false);
-            btnText.removeClass('d-none');
-            btnLoader.addClass('d-none');
-          }
-        },
-        error: function(xhr, status, error) {
-          // Show error message
-          alert('Terjadi kesalahan. Silakan coba lagi.');
-          
-          // Reset button state
-          submitBtn.prop('disabled', false);
-          btnText.removeClass('d-none');
-          btnLoader.addClass('d-none');
+        e.preventDefault();
+        
+        var form = $(this);
+        var submitBtn = $('#submitBtn');
+        var btnText = submitBtn.find('span');
+        
+        // Disable button
+        submitBtn.prop('disabled', true);
+        
+        // Submit form via AJAX
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Show success message
+                    toastr.success(response.message);
+                    // Redirect after a short delay
+                    setTimeout(function() {
+                        window.location.href = response.redirect || '<?= base_url('dashboard') ?>';
+                    }, 1000);
+                } else {
+                    // Show error message
+                    toastr.error(response.message || 'Login gagal. Silakan coba lagi.');
+                    // Reset button state
+                    submitBtn.prop('disabled', false);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Show error message
+                toastr.error('Terjadi kesalahan. Silakan coba lagi.');
+                // Reset button state
+                submitBtn.prop('disabled', false);
+            }
+        });
+    });
+
+    // Initialize datepicker
+    $('#tgl').datepicker({
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '1930:<?php echo date('Y'); ?>',
+        showButtonPanel: true,
+        closeText: 'Clear',
+        defaultDate: new Date(),
+        onClose: function (dateText, inst) {
+            if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+                document.getElementById(this.id).value = '';
+            }
         }
-      });
     });
   });
 </script>
