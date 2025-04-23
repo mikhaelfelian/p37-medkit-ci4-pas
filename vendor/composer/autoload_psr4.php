@@ -9,6 +9,8 @@ return array(
     'ZipStream\\' => array($vendorDir . '/maennchen/zipstream-php/src'),
     'Tests\\Support\\' => array($baseDir . '/tests/_support'),
     'ReCaptcha\\' => array($vendorDir . '/google/recaptcha/src/ReCaptcha', $vendorDir . '/sooluh/codeigniter4-recaptcha'),
+    'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
+    'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
@@ -24,5 +26,6 @@ return array(
     'Config\\' => array($baseDir . '/app/Config'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
     'CodeIgniter\\' => array($vendorDir . '/codeigniter4/framework/system'),
+    'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'App\\' => array($baseDir . '/app'),
 );

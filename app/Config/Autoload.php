@@ -93,12 +93,13 @@ class Autoload extends AutoloadConfig
      * @var list<string>
      */
     public $helpers = [
-        'form',
         'url',
+        'form',
+        'general',
+        'uuid',
         'html',
         'theme',
         'toastr',
-        'general',
         'debug',
         'angka',
         'tanggalan'
