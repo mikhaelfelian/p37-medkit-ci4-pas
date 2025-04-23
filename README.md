@@ -1,4 +1,4 @@
-# Medkit 3
+# Medkit 2 - Online Registration System
 
 Medkit 3 is a mini SIMRS (Sistem Informasi Manajemen Rumah Sakit) application developed specifically for Klinik Esensia Semarang.
 

@@ -159,7 +159,7 @@
                       <div class="box-footer">
                         <div class="social-auth-links text-center">
                           <p>- ATAU -</p>
-                          <a href="<?= base_url('pasien/daftar_baru') ?>" class="btn btn-block btn-primary btn-flat"><i
+                          <a href="<?= base_url('pasien/pendaftaran_baru.php') ?>" class="btn btn-block btn-primary btn-flat"><i
                               class="fa fa-user-plus"></i> PASIEN BARU</a>
                         </div>
                       </div>
