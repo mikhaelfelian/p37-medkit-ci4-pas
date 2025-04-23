@@ -42,7 +42,7 @@ class Auth extends BaseController
         }
         
         $data = [
-            'title'         => 'Dashboard',
+            'title'         => 'Login',
             'Pengaturan'    => $this->pengaturan
         ];
 
