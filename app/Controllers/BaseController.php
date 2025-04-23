@@ -96,6 +96,7 @@ abstract class BaseController extends Controller
         // Load settings and theme
         $SQLSetting                 = new \App\Models\PengaturanModel();
         $this->pengaturan           = $SQLSetting->asObject()->where('id_pengaturan', 1)->first();
+        $this->theme                = new \App\Models\PengaturanThemeModel();
 
         // Set default view data
         $this->data['user']         = $this->ionAuth->user()->row();
