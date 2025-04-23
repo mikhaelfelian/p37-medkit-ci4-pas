@@ -40,15 +40,13 @@ class Auth extends BaseController
         if ($this->ionAuth->loggedIn()) {
             return redirect()->to('/dashboard');
         }
-
+        
         $data = [
-            'title'         => 'Login',
-            'Pengaturan'    => $this->pengaturan,
-            'breadcrumbs'   => 'login/breadcrumbs',
-            'view'          => 'login/login'  // Will be prefixed with admin-lte-2/
+            'title'         => 'Dashboard',
+            'Pengaturan'    => $this->pengaturan
         ];
 
-        return view('admin-lte-2/layouts/top-nav', $data);
+        return view($this->theme->getThemePath() . '/login/login', $data);
     }
 
     public function cek_login()
@@ -60,33 +58,64 @@ class Auth extends BaseController
         $user = $this->request->getVar('user');
         $pass = $this->request->getVar('pass');
         $inga = $this->request->getVar('ingat');
+        $recaptchaResponse = $this->request->getVar('recaptcha_response');
         
-        # Check if user exists first
+        # Verify reCAPTCHA
+        $recaptcha = $this->recaptcha->setExpectedHostname($_SERVER['SERVER_NAME'])
+                                    ->setScoreThreshold(config('Recaptcha')->score)
+                                    ->verify($recaptchaResponse, $_SERVER['REMOTE_ADDR']);
+
+        if (!$recaptcha->isSuccess()) {
+            session()->setFlashdata('toastr', [
+                'type' => 'error',
+                'message' => 'reCAPTCHA verification failed'
+            ]);
+            return redirect()->back();
+        }
+        
+        # Validation rules
+        $aturan = [
+            config('Security')->tokenName => 'required',
+            'user' => [
+                'rules'  => 'required|min_length[3]',
+                'errors' => [
+                    'required'   => 'ID Pengguna tidak boleh kosong',
+                    'min_length' => 'Kolom {field} minimal 3 huruf',
+                ]
+            ],
+            'pass' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Kata sandi tidak boleh kosong',
+                ]
+            ],
+            'recaptcha_response' => 'required'
+        ];
+        
+        # Simpan config validasi
+        $validasi->setRules($aturan);
+
         $cek = $this->ionAuth->usernameCheck($user);
-        
+        if (!$this->validate($aturan)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'ID Pengguna atau Kata Sandi salah!');
+        }
+
+        # Check if user exists first
         if (!$cek) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'ID Pengguna atau Kata Sandi salah!'
-            ]);
+            return redirect()->back()->with('error', 'ID Pengguna atau Kata Sandi salah!');
+        }else{
+            // # Try to login
+            $inget_ya = ($inga == '1' ? TRUE : FALSE);
+            $login = $this->ionAuth->login($user, $pass, $inget_ya);
+
+            if(!$login) {
+                return redirect()->back()->with('error', 'ID Pengguna atau Kata Sandi salah!');
+            }else{
+                return redirect()->to('/dashboard')->with('success', 'Login berhasil!');
+            }
         }
-
-        # Try to login
-        $inget_ya = ($inga == '1' ? TRUE : FALSE);
-        $login = $this->ionAuth->login($user, $pass, $inget_ya);
-
-        if(!$login) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'ID Pengguna atau Kata Sandi salah!'
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'success' => true,
-            'message' => 'Login berhasil!',
-            'redirect' => base_url('dashboard')
-        ]);
     }
 
     public function logout()
@@ -118,6 +147,6 @@ class Auth extends BaseController
             }
         }
 
-        return view('admin-lte-2/login/forgot_password', $this->data);
+        return view($this->theme->getThemePath() . '/login/forgot_password', $this->data);
     }
-} 
+}
