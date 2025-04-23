@@ -19,14 +19,14 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="<?= base_url('public/assets/theme/admin-lte-3/dist/img/user2-160x160.jpg') ?>" class="user-image img-circle elevation-0" alt="User Image">
-                <span class="d-none d-md-inline"><?= $user->username ?></span>
+                <span class="d-none d-md-inline"><?= $user->username ?? '' ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-success">
                     <img src="<?= base_url('public/assets/theme/admin-lte-3/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-0" alt="User Image">
                     <p>
-                        <?= $user->first_name . ' ' . $user->last_name ?>
+                        <?php // $user->first_name . ' ' . $user->last_name ?>
                         <small>Member since <?= date('d-m-Y', $user->created_on) ?></small>
                     </p>
                 </li>

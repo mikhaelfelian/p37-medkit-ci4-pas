@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,6 +94,48 @@
     </footer>
   </div>
   <!-- ./wrapper -->
+
+  <!-- Add this script for toastr notifications -->
+  <script>
+    $(document).ready(function () {
+      // Toastr options
+      toastr.options = {
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+      };
+
+      // Flash messages
+      <?php if (session()->getFlashdata('success')): ?>
+        toastr.success('<?= session()->getFlashdata('success') ?>');
+      <?php endif; ?>
+
+      <?php if (session()->getFlashdata('error')): ?>
+        toastr.error('<?= session()->getFlashdata('error') ?>');
+      <?php endif; ?>
+
+      <?php if (session()->getFlashdata('warning')): ?>
+        toastr.warning('<?= session()->getFlashdata('warning') ?>');
+      <?php endif; ?>
+
+      <?php if (session()->getFlashdata('info')): ?>
+        toastr.info('<?= session()->getFlashdata('info') ?>');
+      <?php endif; ?>
+    });
+  </script>
+
   <!-- Custom scripts -->
   <?= $this->renderSection('scripts') ?>
 </body>
