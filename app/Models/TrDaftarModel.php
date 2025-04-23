@@ -12,10 +12,10 @@ use CodeIgniter\Model;
  */
 class TrDaftarModel extends Model
 {
-    protected $table = 'tr_daftar';
+    protected $table = 'tbl_pendaftaran';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType = 'array';
+    protected $returnType = 'object';
     protected $useSoftDeletes = false;
     protected $allowedFields = [
         'uuid',
