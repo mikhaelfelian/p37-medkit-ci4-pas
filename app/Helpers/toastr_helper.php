@@ -29,7 +29,8 @@ if (!function_exists('toast_show')) {
                     'showEasing': 'swing',
                     'hideEasing': 'linear',
                     'showMethod': 'fadeIn',
-                    'hideMethod': 'fadeOut'
+                    'hideMethod': 'fadeOut',
+                    'opacity': 1
                 };
                 toastr." . $type . "('" . $message . "', '" . $title . "');
             </script>";
