@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\TrDaftarModel;
-use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\Controller;
 
 /**
  * Pasien Controller
@@ -11,82 +11,126 @@ use CodeIgniter\RESTful\ResourceController;
  * @author Mikhael Felian Waskito - mikhaelfelian@gmail.com
  * @date 2025-04-23
  */
-class Pasien extends ResourceController
+class Pasien extends Controller
 {
-    protected $modelName = 'App\Models\TrDaftarModel';
-    protected $format = 'json';
+    protected $model;
+
+    public function __construct()
+    {
+        $this->model = new TrDaftarModel();
+    }
 
     /**
-     * Return an array of resource objects, themselves in array format
+     * Display a listing of the resource.
      *
      * @return mixed
      */
     public function index()
     {
-        return $this->respond($this->model->findAll());
+        $data = [
+            'title' => 'Daftar Pasien',
+            'data' => $this->model->findAll()
+        ];
+        return view('admin-lte-2/pasien/index', $data);
     }
 
     /**
-     * Return the properties of a resource object
+     * Show the form for creating a new resource.
      *
+     * @return mixed
+     */
+    public function create()
+    {
+        $data = [
+            'title' => 'Tambah Pasien'
+        ];
+        return view('admin-lte-2/pasien/create', $data);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return mixed
+     */
+    public function store()
+    {
+        $data = $this->request->getPost();
+        $data['uuid'] = generate_uuid();
+        
+        if (!$this->model->insert($data)) {
+            return redirect()->back()->withInput()->with('errors', $this->model->errors());
+        }
+
+        return redirect()->to('pasien')->with('message', 'Data berhasil ditambahkan');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
      * @return mixed
      */
     public function show($id = null)
     {
         $data = $this->model->find($id);
         if (!$data) {
-            return $this->failNotFound('Data tidak ditemukan');
+            return redirect()->to('pasien')->with('error', 'Data tidak ditemukan');
         }
-        return $this->respond($data);
+
+        return view('admin-lte-2/pasien/show', [
+            'title' => 'Detail Pasien',
+            'data' => $data
+        ]);
     }
 
     /**
-     * Create a new resource object, from "posted" parameters
+     * Show the form for editing the specified resource.
      *
+     * @param int $id
      * @return mixed
      */
-    public function create()
+    public function edit($id = null)
     {
-        $data = $this->request->getJSON(true);
-        $data['uuid'] = generate_uuid();
-        $data['tgl_simpan'] = date('Y-m-d H:i:s');
-        $data['tgl_modif'] = date('Y-m-d H:i:s');
-        
-        if (!$this->model->insert($data)) {
-            return $this->fail($this->model->errors());
+        $data = $this->model->find($id);
+        if (!$data) {
+            return redirect()->to('pasien')->with('error', 'Data tidak ditemukan');
         }
 
-        return $this->respondCreated($data, 'Data berhasil ditambahkan');
+        return view('admin-lte-2/pasien/edit', [
+            'title' => 'Edit Pasien',
+            'data' => $data
+        ]);
     }
 
     /**
-     * Add or update a model resource, from "posted" properties
+     * Update the specified resource in storage.
      *
+     * @param int $id
      * @return mixed
      */
     public function update($id = null)
     {
-        $data = $this->request->getJSON(true);
-        $data['tgl_modif'] = date('Y-m-d H:i:s');
+        $data = $this->request->getPost();
         
         if (!$this->model->update($id, $data)) {
-            return $this->fail($this->model->errors());
+            return redirect()->back()->withInput()->with('errors', $this->model->errors());
         }
 
-        return $this->respond($data, 200, 'Data berhasil diupdate');
+        return redirect()->to('pasien')->with('message', 'Data berhasil diupdate');
     }
 
     /**
-     * Delete the designated resource object from the model
+     * Remove the specified resource from storage.
      *
+     * @param int $id
      * @return mixed
      */
     public function delete($id = null)
     {
         if (!$this->model->delete($id)) {
-            return $this->fail($this->model->errors());
+            return redirect()->to('pasien')->with('error', 'Gagal menghapus data');
         }
 
-        return $this->respondDeleted(['id' => $id], 'Data berhasil dihapus');
+        return redirect()->to('pasien')->with('message', 'Data berhasil dihapus');
     }
 } 
