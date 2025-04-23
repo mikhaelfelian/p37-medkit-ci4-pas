@@ -61,63 +61,27 @@ class TrDaftarModel extends Model
 
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'tgl_simpan';
-    protected $updatedField = 'tgl_modif';
-    protected $deletedField = 'deleted_at';
-
-    // Validation
-    protected $validationRules = [
-        'uuid' => 'required|max_length[36]',
-        'nik' => 'permit_empty|max_length[160]',
-        'nama' => 'required|max_length[160]',
-        'nama_pgl' => 'permit_empty|max_length[160]',
-        'tmp_lahir' => 'permit_empty|max_length[160]',
-        'tgl_lahir' => 'permit_empty|valid_date',
-        'jns_klm' => 'required|in_list[L,P]',
-        'kontak' => 'permit_empty|max_length[50]',
-        'kontak_rmh' => 'permit_empty|max_length[50]',
-        'status' => 'required|in_list[1,2]',
-        'status_akt' => 'required|in_list[0,1,2]',
-        'status_hdr' => 'required|in_list[0,1]',
-        'status_gc' => 'required|in_list[0,1]',
-        'status_dft' => 'required|in_list[0,1,2]',
-        'status_hps' => 'required|in_list[0,1,2]'
-    ];
-
-    protected $validationMessages = [
-        'uuid' => [
-            'required' => 'UUID harus diisi',
-            'max_length' => 'UUID maksimal 36 karakter'
-        ],
-        'nama' => [
-            'required' => 'Nama harus diisi',
-            'max_length' => 'Nama maksimal 160 karakter'
-        ],
-        'jns_klm' => [
-            'required' => 'Jenis kelamin harus diisi',
-            'in_list' => 'Jenis kelamin harus L atau P'
-        ]
-    ];
-
-    protected $skipValidation = false;
-    protected $cleanValidationRules = true;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'tgl_simpan';
+    protected $updatedField  = 'tgl_modif';
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = false;
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert = ['beforeInsert'];
-    protected $beforeUpdate = ['beforeUpdate'];
+    protected $beforeInsert   = ['beforeInsert'];
+    protected $beforeUpdate   = ['beforeUpdate'];
 
     protected function beforeInsert(array $data)
     {
         $data['data']['tgl_simpan'] = date('Y-m-d H:i:s');
-        $data['data']['tgl_modif'] = date('Y-m-d H:i:s');
+        $data['data']['tgl_modif']  = date('Y-m-d H:i:s');
         return $data;
     }
 
     protected function beforeUpdate(array $data)
     {
-        $data['data']['tgl_modif'] = date('Y-m-d H:i:s');
+        $data['data']['tgl_modif']  = date('Y-m-d H:i:s');
         return $data;
     }
 } 
