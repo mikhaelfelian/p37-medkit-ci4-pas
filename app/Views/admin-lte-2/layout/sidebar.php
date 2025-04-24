@@ -23,7 +23,7 @@
       </li>
       <li<?= isMenuActive('pasien/pendaftaran.php') ? ' class="active"' : '' ?>>
         <a href="<?= base_url('pasien/pendaftaran.php') ?>">
-          <i class="fa fa-user-plus"></i> <span>Pendaftaran</span>
+          <i class="fa fa-user-plus"></i> <span>Pendaftaran</span> 
         </a>
       </li>
       <li>
