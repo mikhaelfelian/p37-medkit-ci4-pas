@@ -23,6 +23,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.exe
 
 # Windows shortcuts
 *.lnk
@@ -97,10 +98,7 @@ _modules/*
 
 # Netbeans
 nbproject/
-build/
-builds/
 nbbuild/
-dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
