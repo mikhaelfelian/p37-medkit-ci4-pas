@@ -277,13 +277,11 @@ class Pasien extends BaseController
             }
 
             return redirect()->to(base_url('pasien/pendaftaran_baru.php?id='.$uuid))
-                           ->with('success', 'Pendaftaran berhasil. No. Antrian: ' . $no_antrian);
-
+                           ->with('success', 'Pendaftaran berhasil. No. Antrian: ' . $no_antrian);        
         } catch (\Exception $e) {
-            log_message('error', '[Pasien::set_daftar_baru] ' . $e->getMessage());
             return redirect()->back()
                            ->withInput()
-                           ->with('error', 'Gagal menyimpan data pendaftaran');
+                           ->with('error', $e->getMessage());
         }
     }
 
