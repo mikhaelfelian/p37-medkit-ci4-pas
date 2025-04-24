@@ -58,6 +58,31 @@ class Pasien extends BaseController
     }
 
     /**
+     * Show the form for patient registration.
+     *
+     * @return mixed
+     */
+    public function daftar()    {
+        if ($this->ionAuth->loggedIn()) {
+            $data = [
+                'title'         => 'Pendaftaran',
+                'gelar'         => $this->gelar->findAll(),
+                'penjamin'      => $this->penjamin->where('status', '1')->findAll(),
+                'poli'          => $this->poli->where('status', '1')->findAll(),
+                'jenisKerja'    => $this->jenisKerja->findAll(),
+                'Pengaturan'    => $this->pengaturan,
+                'user'          => $this->ionAuth->user()->row()
+            ];
+            
+            return view('admin-lte-2/pasien/daftar', $data);
+        }else{
+            return redirect()->back()
+                           ->withInput()
+                           ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return mixed
@@ -72,7 +97,7 @@ class Pasien extends BaseController
             'jenisKerja'    => $this->jenisKerja->findAll(),
             'Pengaturan'    => $this->pengaturan
         ];
-        return view('admin-lte-2/pasien/daftar', $data);
+        return view('admin-lte-2/pasien/daftar_baru', $data);
     }
 
     /**

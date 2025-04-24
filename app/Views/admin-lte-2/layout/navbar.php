@@ -102,7 +102,7 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?= base_url('public/assets/theme/admin-lte-2/dist/img/user2-160x160.jpg') ?>" class="user-image"
+            <img src="<?= (!empty($user->file_name)) ? $Pengaturan->url_app.'/'.$user->file_name : base_url('public/assets/theme/admin-lte-2/dist/img/user2-160x160.jpg') ?>" class="user-image"
               alt="User Image">
             <span class="hidden-xs"><?= $user->first_name ?></span>
           </a>

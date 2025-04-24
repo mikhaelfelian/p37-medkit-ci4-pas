@@ -16,13 +16,13 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li class="active">
+      <li<?= isMenuActive('dashboard') ? ' class="active"' : '' ?>>
         <a href="<?= base_url('dashboard') ?>">
           <i class="fa fa-dashboard"></i> <span>Beranda</span>
         </a>
       </li>
-      <li>
-        <a href="<?= base_url('dashboard') ?>">
+      <li<?= isMenuActive('pasien/pendaftaran.php') ? ' class="active"' : '' ?>>
+        <a href="<?= base_url('pasien/pendaftaran.php') ?>">
           <i class="fa fa-user-plus"></i> <span>Pendaftaran</span>
         </a>
       </li>
