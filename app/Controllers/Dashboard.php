@@ -7,30 +7,30 @@
  */
 
 namespace App\Controllers;
+use App\Models\VDokterModel;
 
 class Dashboard extends BaseController
 {
     protected $medTransModel;
 
-    public function __construct()
-    {
-
+    public function __construct(){
+        $this->jadwal = new VDokterModel();
     }
-    public function index()
-    {
-        // Check if user is logged in
-        if (!$this->ionAuth->loggedIn()) {
-            return redirect()->to('/auth/login');
+    public function index(){
+        if ($this->ionAuth->loggedIn()) {
+            $data = [
+                'title'         => 'Dashboard',
+                'Pengaturan'    => $this->pengaturan,
+                'user'          => $this->ionAuth->user()->row(),
+                'jadwal'        => $this->jadwal->getJadwalDokter(),
+                'total_users'   => 1
+            ];
+    
+            return view($this->theme->getThemePath() . '/dashboard', $data);
+        }else{
+            return redirect()->back()
+                           ->withInput()
+                           ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
         }
-        
-        $data = [
-            'title'         => 'Dashboard',
-            'Pengaturan'    => $this->pengaturan,
-            'user'          => $this->ionAuth->user()->row(),
-            'isMenuActive'  => isMenuActive('dashboard') ? 'active' : '',
-            'total_users'   => 1
-        ];
-
-        return view($this->theme->getThemePath() . '/dashboard', $data);
     }
 } 

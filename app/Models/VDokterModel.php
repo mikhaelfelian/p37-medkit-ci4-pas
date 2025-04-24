@@ -30,4 +30,24 @@ class VDokterModel extends Model
                     ->orderBy('id_poli', 'ASC')
                     ->findAll();
     }
+
+    /**
+     * Get jadwal dokter where days are not empty
+     * 
+     * @return array
+     */
+    public function getJadwalDokter()
+    {
+        return $this->where('hari_1 !=', '')
+                    ->orWhere('hari_2 !=', '')
+                    ->orWhere('hari_3 !=', '')
+                    ->orWhere('hari_4 !=', '')
+                    ->orWhere('hari_5 !=', '')
+                    ->orWhere('hari_6 !=', '')
+                    ->orWhere('hari_7 !=', '')
+                    ->where('status_prtk', 1)
+                    ->where('status_aps', 0)
+                    ->orderBy('id_poli', 'ASC')
+                    ->findAll();
+    }
 } 
