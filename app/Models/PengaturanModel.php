@@ -8,7 +8,7 @@ class PengaturanModel extends Model
     protected $table = 'tbl_pengaturan';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType = 'array';
+    protected $returnType = 'object';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
@@ -21,8 +21,6 @@ class PengaturanModel extends Model
     protected $useTimestamps = false;
     protected $dateFormat = 'datetime';
     protected $createdField = '';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = '';
 
     // Validation
     protected $validationRules = [];

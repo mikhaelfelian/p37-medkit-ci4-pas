@@ -86,6 +86,25 @@ class MedDaftarModel extends Model
     }
 
     /**
+     * Check if a NIK already exists in the database
+     * 
+     * @param string $nik The NIK to check
+     * @return bool|object Returns false if NIK doesn't exist, or the patient record if it does
+     */
+    public function cekNIK($nik)
+    {
+        if (empty($nik)) {
+            return false;
+        }
+        
+        $result = $this->where('nik', $nik)
+                      ->where('status_hps', '0')
+                      ->countAllResults();
+                      
+        return $result > 0 ? false : true;
+    }
+
+    /**
      * Get the next number for a specific poli and date
      * Uses transaction and row locking to prevent race conditions
      * 
@@ -153,5 +172,15 @@ class MedDaftarModel extends Model
         
         // Combine date and number
         return $date . '-' . $number;
+    }
+
+    /**
+     * Get the last insert ID from the database
+     * 
+     * @return int The last insert ID
+     */
+    public function getLastInsertId()
+    {
+        return $this->db->insertID();
     }
 } 

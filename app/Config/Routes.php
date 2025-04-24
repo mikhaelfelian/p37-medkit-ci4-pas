@@ -18,4 +18,15 @@ $routes->group('auth', function ($routes) {
 });
 
 $routes->get('/dashboard', 'Dashboard::index', ['namespace' => 'App\Controllers', 'filter' => 'auth']);
+
+
+/*
+* Pasien Baru Routes
+*/
+$routes->group('pasien', function ($routes) {
+    $routes->get('/', 'Pasien::index');
+    $routes->get('pendaftaran_baru.php', 'Pasien::daftar_baru');
+    $routes->post('set_daftar_baru.php', 'Pasien::set_daftar_baru');
+    $routes->get('data_dokter', 'Pasien::data_dokter');
+});
 ?>

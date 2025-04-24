@@ -87,10 +87,11 @@ class MedAntrianModel extends Model
      * @param string $date Date in Y-m-d format
      * @return int
      */
-    public function getNextQueueNumber($date)
+    public function getNextQueueNumber($date, $poli)
     {
         $lastQueue = $this->select('ncount')
                          ->where('ddate', $date)
+                         ->where('cnoro', $poli)
                          ->orderBy('ncount', 'DESC')
                          ->first();
 
