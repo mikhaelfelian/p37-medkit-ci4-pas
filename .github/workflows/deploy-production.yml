@@ -1,0 +1,73 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode deploy: commit-all, commit-sha, revert-all, revert-sha'
+        required: true
+        default: 'commit-all'
+      ref:
+        description: 'Commit SHA atau branch (misal: main atau e6a1b1d)'
+        required: false
+        default: ''
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (for internal use)
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Get Last Commit Info
+        id: commitinfo
+        run: |
+          echo "🔍 Menampilkan informasi commit terakhir:"
+          COMMIT_MSG=$(git log -1 --pretty=format:"🔹 Commit SHA  : %H%n👤 Author      : %an <%ae>%n🕒 Tanggal     : %cd%n💬 Message     : %s" --date=local)
+          echo "$COMMIT_MSG"
+          echo "commit_message<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Setup SSH Connection
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy Code to Production cPanel
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+            cd ${{ secrets.DEPLOY_PATH_PROD }}
+
+            echo "🚀 Starting deployment - mode: ${{ github.event.inputs.mode }}"
+
+            if [ "${{ github.event.inputs.mode }}" = "commit-all" ]; then
+              git fetch origin
+              git checkout main
+              git pull origin main
+
+            elif [ "${{ github.event.inputs.mode }}" = "commit-sha" ]; then
+              git fetch origin
+              git checkout ${{ github.event.inputs.ref }}
+
+            elif [ "${{ github.event.inputs.mode }}" = "revert-all" ]; then
+              git reset --hard HEAD~1
+
+            elif [ "${{ github.event.inputs.mode }}" = "revert-sha" ]; then
+              git checkout ${{ github.event.inputs.ref }}
+
+            else
+              echo "❌ Invalid mode input: ${{ github.event.inputs.mode }}"
+              exit 1
+            fi
+
+            echo "✅ Deployment finished for mode: ${{ github.event.inputs.mode }}"
+          EOF
+
+      - name: Show Commit Log Again (Optional Copy)
+        run: |
+          echo "🔁 Commit Info Recap:"
+          echo "${{ steps.commitinfo.outputs.commit_message }}"
