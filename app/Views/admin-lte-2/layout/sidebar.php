@@ -27,17 +27,17 @@
         </a>
       </li>
       <li>
-        <a href="<?= base_url('dashboard') ?>">
+        <a href="#">
           <i class="fa fa-flask"></i> <span>Riwayat Lab</span>
         </a>
       </li>
       <li>
-        <a href="<?= base_url('dashboard') ?>">
+        <a href="#">
           <i class="fa fa-file-text"></i> <span>Riwayat Rontgen</span>
         </a>
       </li>
       <li>
-        <a href="<?= base_url('dashboard') ?>">
+        <a href="#">
           <i class="fa fa-paperclip"></i> <span>Riwayat Berkas</span>
         </a>
       </li>

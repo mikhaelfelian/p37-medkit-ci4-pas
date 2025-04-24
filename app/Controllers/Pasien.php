@@ -11,6 +11,7 @@ use App\Models\PenjaminModel;
 use App\Models\PoliModel;
 use App\Models\JenisKerjaModel;
 use App\Models\VDokterModel;
+use App\Models\PasienModel;
 use ReCaptcha\ReCaptcha;
 use CodeIgniter\Controller;
 
@@ -36,6 +37,7 @@ class Pasien extends BaseController
         $this->poli         = new PoliModel();
         $this->jenisKerja   = new JenisKerjaModel();
         $this->dokter       = new VDokterModel();
+        $this->pasien       = new PasienModel();
         $pengaturanModel    = new PengaturanModel();
         $this->pengaturan   = $pengaturanModel->first();
 
@@ -64,14 +66,19 @@ class Pasien extends BaseController
      */
     public function daftar()    {
         if ($this->ionAuth->loggedIn()) {
+            $id_user    = $this->ionAuth->user()->row()->id;
+            $pasien     = $this->pasien->where('id_user', $id_user)->first();
+
             $data = [
                 'title'         => 'Pendaftaran',
+                'subtitle'      => 'Pasien',
                 'gelar'         => $this->gelar->findAll(),
                 'penjamin'      => $this->penjamin->where('status', '1')->findAll(),
                 'poli'          => $this->poli->where('status', '1')->findAll(),
                 'jenisKerja'    => $this->jenisKerja->findAll(),
                 'Pengaturan'    => $this->pengaturan,
-                'user'          => $this->ionAuth->user()->row()
+                'user'          => $this->ionAuth->user()->row(),
+                'pasien'        => $pasien
             ];
             
             return view('admin-lte-2/pasien/daftar', $data);
