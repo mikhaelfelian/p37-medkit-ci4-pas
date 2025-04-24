@@ -30,7 +30,7 @@ class Home extends BaseController
     {
         $data = [
             'title' => 'INFORMASI KETERSEDIAAN KAMAR',
-            'pengaturan' => $this->pengaturan
+            'Pengaturan' => $this->pengaturan
         ];
         
         return view('admin-lte-2/frontend/data_kamar', $data);
