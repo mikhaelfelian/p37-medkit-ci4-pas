@@ -4,4 +4,4 @@
   </div>
   <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= $Pengaturan->website ?>"><?= $Pengaturan->judul ?></a>.</strong> All rights
   reserved.
-</footer> 
+</footer>
