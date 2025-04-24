@@ -14,7 +14,7 @@
                 <h3 class="box-title">ALUR PENDAFTARAN</h3>
               </div>
               <div class="box-body">
-                <p><img src="<?= base_url('public/assets/images/alur_pendaftaran.jpg') ?>">
+                <p><img src="<?= base_url('public/assets/images/alur_pendaftaran.jpg') ?>" class="img-responsive" alt="Alur Pendaftaran">
                 </p>
               </div>
             </div>
