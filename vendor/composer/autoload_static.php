@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit397827fb71c46723246bdc861ca2d498
+class ComposerStaticInitafdbd8c6d4f717bc64b58626a746e0f6
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -61,6 +61,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         ),
         'C' => 
         array (
+            'Composer\\Pcre\\' => 14,
             'Complex\\' => 8,
             'CodeIgniter\\' => 12,
         ),
@@ -148,6 +149,10 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Composer\\Pcre\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/pcre/src',
         ),
         'Complex\\' => 
         array (
@@ -269,6 +274,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\Commands\\ListCommands' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/ListCommands.php',
         'CodeIgniter\\Commands\\Server\\Serve' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Server/Serve.php',
         'CodeIgniter\\Commands\\Translation\\LocalizationFinder' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Translation/LocalizationFinder.php',
+        'CodeIgniter\\Commands\\Translation\\LocalizationSync' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Translation/LocalizationSync.php',
         'CodeIgniter\\Commands\\Utilities\\ConfigCheck' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Utilities/ConfigCheck.php',
         'CodeIgniter\\Commands\\Utilities\\Environment' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Utilities/Environment.php',
         'CodeIgniter\\Commands\\Utilities\\FilterCheck' => __DIR__ . '/..' . '/codeigniter4/framework/system/Commands/Utilities/FilterCheck.php',
@@ -370,6 +376,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\Database\\SQLite3\\Table' => __DIR__ . '/..' . '/codeigniter4/framework/system/Database/SQLite3/Table.php',
         'CodeIgniter\\Database\\SQLite3\\Utils' => __DIR__ . '/..' . '/codeigniter4/framework/system/Database/SQLite3/Utils.php',
         'CodeIgniter\\Database\\Seeder' => __DIR__ . '/..' . '/codeigniter4/framework/system/Database/Seeder.php',
+        'CodeIgniter\\Database\\TableName' => __DIR__ . '/..' . '/codeigniter4/framework/system/Database/TableName.php',
         'CodeIgniter\\Debug\\BaseExceptionHandler' => __DIR__ . '/..' . '/codeigniter4/framework/system/Debug/BaseExceptionHandler.php',
         'CodeIgniter\\Debug\\ExceptionHandler' => __DIR__ . '/..' . '/codeigniter4/framework/system/Debug/ExceptionHandler.php',
         'CodeIgniter\\Debug\\ExceptionHandlerInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Debug/ExceptionHandlerInterface.php',
@@ -411,6 +418,8 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\Entity\\Entity' => __DIR__ . '/..' . '/codeigniter4/framework/system/Entity/Entity.php',
         'CodeIgniter\\Entity\\Exceptions\\CastException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Entity/Exceptions/CastException.php',
         'CodeIgniter\\Events\\Events' => __DIR__ . '/..' . '/codeigniter4/framework/system/Events/Events.php',
+        'CodeIgniter\\Exceptions\\BadFunctionCallException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/BadFunctionCallException.php',
+        'CodeIgniter\\Exceptions\\BadMethodCallException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/BadMethodCallException.php',
         'CodeIgniter\\Exceptions\\ConfigException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/ConfigException.php',
         'CodeIgniter\\Exceptions\\CriticalError' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/CriticalError.php',
         'CodeIgniter\\Exceptions\\DebugTraceableTrait' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/DebugTraceableTrait.php',
@@ -419,13 +428,18 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\Exceptions\\FrameworkException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/FrameworkException.php',
         'CodeIgniter\\Exceptions\\HTTPExceptionInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/HTTPExceptionInterface.php',
         'CodeIgniter\\Exceptions\\HasExitCodeInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/HasExitCodeInterface.php',
+        'CodeIgniter\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/InvalidArgumentException.php',
+        'CodeIgniter\\Exceptions\\LogicException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/LogicException.php',
         'CodeIgniter\\Exceptions\\ModelException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/ModelException.php',
         'CodeIgniter\\Exceptions\\PageNotFoundException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/PageNotFoundException.php',
+        'CodeIgniter\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/RuntimeException.php',
         'CodeIgniter\\Exceptions\\TestException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Exceptions/TestException.php',
+        'CodeIgniter\\Files\\Exceptions\\ExceptionInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/Exceptions/ExceptionInterface.php',
         'CodeIgniter\\Files\\Exceptions\\FileException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/Exceptions/FileException.php',
         'CodeIgniter\\Files\\Exceptions\\FileNotFoundException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/Exceptions/FileNotFoundException.php',
         'CodeIgniter\\Files\\File' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/File.php',
         'CodeIgniter\\Files\\FileCollection' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/FileCollection.php',
+        'CodeIgniter\\Files\\FileSizeUnit' => __DIR__ . '/..' . '/codeigniter4/framework/system/Files/FileSizeUnit.php',
         'CodeIgniter\\Filters\\CSRF' => __DIR__ . '/..' . '/codeigniter4/framework/system/Filters/CSRF.php',
         'CodeIgniter\\Filters\\Cors' => __DIR__ . '/..' . '/codeigniter4/framework/system/Filters/Cors.php',
         'CodeIgniter\\Filters\\DebugToolbar' => __DIR__ . '/..' . '/codeigniter4/framework/system/Filters/DebugToolbar.php',
@@ -449,6 +463,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\HTTP\\Cors' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Cors.php',
         'CodeIgniter\\HTTP\\DownloadResponse' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/DownloadResponse.php',
         'CodeIgniter\\HTTP\\Exceptions\\BadRequestException' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Exceptions/BadRequestException.php',
+        'CodeIgniter\\HTTP\\Exceptions\\ExceptionInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Exceptions/ExceptionInterface.php',
         'CodeIgniter\\HTTP\\Exceptions\\HTTPException' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Exceptions/HTTPException.php',
         'CodeIgniter\\HTTP\\Exceptions\\RedirectException' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Exceptions/RedirectException.php',
         'CodeIgniter\\HTTP\\Files\\FileCollection' => __DIR__ . '/..' . '/codeigniter4/framework/system/HTTP/Files/FileCollection.php',
@@ -516,8 +531,8 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'CodeIgniter\\Router\\AutoRouterImproved' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/AutoRouterImproved.php',
         'CodeIgniter\\Router\\AutoRouterInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/AutoRouterInterface.php',
         'CodeIgniter\\Router\\DefinedRouteCollector' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/DefinedRouteCollector.php',
+        'CodeIgniter\\Router\\Exceptions\\ExceptionInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/Exceptions/ExceptionInterface.php',
         'CodeIgniter\\Router\\Exceptions\\MethodNotFoundException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/Exceptions/MethodNotFoundException.php',
-        'CodeIgniter\\Router\\Exceptions\\RedirectException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/Exceptions/RedirectException.php',
         'CodeIgniter\\Router\\Exceptions\\RouterException' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/Exceptions/RouterException.php',
         'CodeIgniter\\Router\\RouteCollection' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/RouteCollection.php',
         'CodeIgniter\\Router\\RouteCollectionInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/Router/RouteCollectionInterface.php',
@@ -613,6 +628,23 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'Complex\\Functions' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Functions.php',
         'Complex\\Operations' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Operations.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Composer\\Pcre\\MatchAllResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchAllResult.php',
+        'Composer\\Pcre\\MatchAllStrictGroupsResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchAllStrictGroupsResult.php',
+        'Composer\\Pcre\\MatchAllWithOffsetsResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchAllWithOffsetsResult.php',
+        'Composer\\Pcre\\MatchResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchResult.php',
+        'Composer\\Pcre\\MatchStrictGroupsResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchStrictGroupsResult.php',
+        'Composer\\Pcre\\MatchWithOffsetsResult' => __DIR__ . '/..' . '/composer/pcre/src/MatchWithOffsetsResult.php',
+        'Composer\\Pcre\\PHPStan\\InvalidRegexPatternRule' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/InvalidRegexPatternRule.php',
+        'Composer\\Pcre\\PHPStan\\PregMatchFlags' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/PregMatchFlags.php',
+        'Composer\\Pcre\\PHPStan\\PregMatchParameterOutTypeExtension' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/PregMatchParameterOutTypeExtension.php',
+        'Composer\\Pcre\\PHPStan\\PregMatchTypeSpecifyingExtension' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/PregMatchTypeSpecifyingExtension.php',
+        'Composer\\Pcre\\PHPStan\\PregReplaceCallbackClosureTypeExtension' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/PregReplaceCallbackClosureTypeExtension.php',
+        'Composer\\Pcre\\PHPStan\\UnsafeStrictGroupsCallRule' => __DIR__ . '/..' . '/composer/pcre/src/PHPStan/UnsafeStrictGroupsCallRule.php',
+        'Composer\\Pcre\\PcreException' => __DIR__ . '/..' . '/composer/pcre/src/PcreException.php',
+        'Composer\\Pcre\\Preg' => __DIR__ . '/..' . '/composer/pcre/src/Preg.php',
+        'Composer\\Pcre\\Regex' => __DIR__ . '/..' . '/composer/pcre/src/Regex.php',
+        'Composer\\Pcre\\ReplaceResult' => __DIR__ . '/..' . '/composer/pcre/src/ReplaceResult.php',
+        'Composer\\Pcre\\UnexpectedNullMatchException' => __DIR__ . '/..' . '/composer/pcre/src/UnexpectedNullMatchException.php',
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -1290,10 +1322,14 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Event\\TestSuite\\TestSuiteWithName' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Value/TestSuite/TestSuiteWithName.php',
         'PHPUnit\\Event\\Test\\AfterLastTestMethodCalled' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodCalled.php',
         'PHPUnit\\Event\\Test\\AfterLastTestMethodCalledSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodCalledSubscriber.php',
+        'PHPUnit\\Event\\Test\\AfterLastTestMethodErrored' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodErrored.php',
+        'PHPUnit\\Event\\Test\\AfterLastTestMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodErroredSubscriber.php',
         'PHPUnit\\Event\\Test\\AfterLastTestMethodFinished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodFinished.php',
         'PHPUnit\\Event\\Test\\AfterLastTestMethodFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterLastTestMethodFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\AfterTestMethodCalled' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodCalled.php',
         'PHPUnit\\Event\\Test\\AfterTestMethodCalledSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodCalledSubscriber.php',
+        'PHPUnit\\Event\\Test\\AfterTestMethodErrored' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodErrored.php',
+        'PHPUnit\\Event\\Test\\AfterTestMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodErroredSubscriber.php',
         'PHPUnit\\Event\\Test\\AfterTestMethodFinished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodFinished.php',
         'PHPUnit\\Event\\Test\\AfterTestMethodFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/AfterTestMethodFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\AssertionFailed' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/Assertion/AssertionFailed.php',
@@ -1308,6 +1344,8 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Event\\Test\\BeforeFirstTestMethodFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeFirstTestMethodFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\BeforeTestMethodCalled' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodCalled.php',
         'PHPUnit\\Event\\Test\\BeforeTestMethodCalledSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodCalledSubscriber.php',
+        'PHPUnit\\Event\\Test\\BeforeTestMethodErrored' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodErrored.php',
+        'PHPUnit\\Event\\Test\\BeforeTestMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodErroredSubscriber.php',
         'PHPUnit\\Event\\Test\\BeforeTestMethodFinished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodFinished.php',
         'PHPUnit\\Event\\Test\\BeforeTestMethodFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/BeforeTestMethodFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\ComparatorRegistered' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/ComparatorRegistered.php',
@@ -1361,10 +1399,14 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Event\\Test\\PhpunitWarningTriggeredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/Issue/PhpunitWarningTriggeredSubscriber.php',
         'PHPUnit\\Event\\Test\\PostConditionCalled' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionCalled.php',
         'PHPUnit\\Event\\Test\\PostConditionCalledSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionCalledSubscriber.php',
+        'PHPUnit\\Event\\Test\\PostConditionErrored' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionErrored.php',
+        'PHPUnit\\Event\\Test\\PostConditionErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionErroredSubscriber.php',
         'PHPUnit\\Event\\Test\\PostConditionFinished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionFinished.php',
         'PHPUnit\\Event\\Test\\PostConditionFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PostConditionFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\PreConditionCalled' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionCalled.php',
         'PHPUnit\\Event\\Test\\PreConditionCalledSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionCalledSubscriber.php',
+        'PHPUnit\\Event\\Test\\PreConditionErrored' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionErrored.php',
+        'PHPUnit\\Event\\Test\\PreConditionErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionErroredSubscriber.php',
         'PHPUnit\\Event\\Test\\PreConditionFinished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionFinished.php',
         'PHPUnit\\Event\\Test\\PreConditionFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/HookMethod/PreConditionFinishedSubscriber.php',
         'PHPUnit\\Event\\Test\\PreparationFailed' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Test/Lifecycle/PreparationFailed.php',
@@ -1640,6 +1682,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Logging\\JUnit\\TestPreparationFailedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparationFailedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestPreparationStartedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparationStartedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestPreparedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparedSubscriber.php',
+        'PHPUnit\\Logging\\JUnit\\TestPrintedUnexpectedOutputSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPrintedUnexpectedOutputSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestRunnerExecutionFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestRunnerExecutionFinishedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestSkippedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestSuiteFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestSuiteFinishedSubscriber.php',
@@ -1715,6 +1758,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Metadata\\IgnoreDeprecations' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreDeprecations.php',
         'PHPUnit\\Metadata\\IgnoreFunctionForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreFunctionForCodeCoverage.php',
         'PHPUnit\\Metadata\\IgnoreMethodForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreMethodForCodeCoverage.php',
+        'PHPUnit\\Metadata\\InvalidAttributeException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Exception/InvalidAttributeException.php',
         'PHPUnit\\Metadata\\InvalidVersionRequirementException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Exception/InvalidVersionRequirementException.php',
         'PHPUnit\\Metadata\\Metadata' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Metadata.php',
         'PHPUnit\\Metadata\\MetadataCollection' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/MetadataCollection.php',
@@ -1815,6 +1859,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PHPUnit\\Runner\\TestSuiteSorter' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestSuiteSorter.php',
         'PHPUnit\\Runner\\UnsupportedPhptSectionException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Exception/UnsupportedPhptSectionException.php',
         'PHPUnit\\Runner\\Version' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Version.php',
+        'PHPUnit\\TestRunner\\TestResult\\AfterTestClassMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Subscriber/AfterTestClassMethodErroredSubscriber.php',
         'PHPUnit\\TestRunner\\TestResult\\BeforeTestClassMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Subscriber/BeforeTestClassMethodErroredSubscriber.php',
         'PHPUnit\\TestRunner\\TestResult\\Collector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Collector.php',
         'PHPUnit\\TestRunner\\TestResult\\ExecutionStartedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Subscriber/ExecutionStartedSubscriber.php',
@@ -2224,6 +2269,7 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Logical\\Conditional' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Logical/Conditional.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Logical\\Operations' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Logical/Operations.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Address' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Address.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\ChooseRowsEtc' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/ChooseRowsEtc.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\ExcelMatch' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/ExcelMatch.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Filter' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Filter.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Formula' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Formula.php',
@@ -3361,10 +3407,10 @@ class ComposerStaticInit397827fb71c46723246bdc861ca2d498
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitafdbd8c6d4f717bc64b58626a746e0f6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitafdbd8c6d4f717bc64b58626a746e0f6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitafdbd8c6d4f717bc64b58626a746e0f6::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitafdbd8c6d4f717bc64b58626a746e0f6::$classMap;
 
         }, null, ClassLoader::class);
     }

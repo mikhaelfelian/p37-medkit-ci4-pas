@@ -24,6 +24,7 @@ return array(
     'Fpdf\\' => array($vendorDir . '/fpdf/fpdf/src/Fpdf'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
+    'Composer\\Pcre\\' => array($vendorDir . '/composer/pcre/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
     'CodeIgniter\\' => array($vendorDir . '/codeigniter4/framework/system'),
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
