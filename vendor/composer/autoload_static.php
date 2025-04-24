@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
+class ComposerStaticInit397827fb71c46723246bdc861ca2d498
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -61,7 +61,6 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         ),
         'C' => 
         array (
-            'Config\\' => 7,
             'Complex\\' => 8,
             'CodeIgniter\\' => 12,
         ),
@@ -150,10 +149,6 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'Config\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app/Config',
-        ),
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
@@ -186,6 +181,7 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'App\\Controllers\\Auth' => __DIR__ . '/../..' . '/app/Controllers/Auth.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/Controllers/BaseController.php',
         'App\\Controllers\\Dashboard' => __DIR__ . '/../..' . '/app/Controllers/Dashboard.php',
+        'App\\Controllers\\Home' => __DIR__ . '/../..' . '/app/Controllers/Home.php',
         'App\\Controllers\\Pasien' => __DIR__ . '/../..' . '/app/Controllers/Pasien.php',
         'App\\Controllers\\Publik' => __DIR__ . '/../..' . '/app/Controllers/Publik.php',
         'App\\Filters\\AuthFilter' => __DIR__ . '/../..' . '/app/Filters/AuthFilter.php',
@@ -195,11 +191,13 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'App\\Models\\MedAntrianModel' => __DIR__ . '/../..' . '/app/Models/MedAntrianModel.php',
         'App\\Models\\MedAntrianPoliModel' => __DIR__ . '/../..' . '/app/Models/MedAntrianPoliModel.php',
         'App\\Models\\MedDaftarModel' => __DIR__ . '/../..' . '/app/Models/MedDaftarModel.php',
+        'App\\Models\\PasienModel' => __DIR__ . '/../..' . '/app/Models/PasienModel.php',
         'App\\Models\\PengaturanModel' => __DIR__ . '/../..' . '/app/Models/PengaturanModel.php',
         'App\\Models\\PengaturanThemeModel' => __DIR__ . '/../..' . '/app/Models/PengaturanThemeModel.php',
         'App\\Models\\PenjaminModel' => __DIR__ . '/../..' . '/app/Models/PenjaminModel.php',
         'App\\Models\\PoliModel' => __DIR__ . '/../..' . '/app/Models/PoliModel.php',
         'App\\Models\\VDokterModel' => __DIR__ . '/../..' . '/app/Models/VDokterModel.php',
+        'App\\Models\\VKamarModel' => __DIR__ . '/../..' . '/app/Models/VKamarModel.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
         'Brick\\Math\\BigNumber' => __DIR__ . '/..' . '/brick/math/src/BigNumber.php',
@@ -615,43 +613,6 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'Complex\\Functions' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Functions.php',
         'Complex\\Operations' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Operations.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Config\\App' => __DIR__ . '/../..' . '/app/Config/App.php',
-        'Config\\Autoload' => __DIR__ . '/../..' . '/app/Config/Autoload.php',
-        'Config\\CURLRequest' => __DIR__ . '/../..' . '/app/Config/CURLRequest.php',
-        'Config\\Cache' => __DIR__ . '/../..' . '/app/Config/Cache.php',
-        'Config\\ContentSecurityPolicy' => __DIR__ . '/../..' . '/app/Config/ContentSecurityPolicy.php',
-        'Config\\Cookie' => __DIR__ . '/../..' . '/app/Config/Cookie.php',
-        'Config\\Cors' => __DIR__ . '/../..' . '/app/Config/Cors.php',
-        'Config\\Database' => __DIR__ . '/../..' . '/app/Config/Database.php',
-        'Config\\DocTypes' => __DIR__ . '/../..' . '/app/Config/DocTypes.php',
-        'Config\\Email' => __DIR__ . '/../..' . '/app/Config/Email.php',
-        'Config\\Encryption' => __DIR__ . '/../..' . '/app/Config/Encryption.php',
-        'Config\\Exceptions' => __DIR__ . '/../..' . '/app/Config/Exceptions.php',
-        'Config\\Feature' => __DIR__ . '/../..' . '/app/Config/Feature.php',
-        'Config\\Filters' => __DIR__ . '/../..' . '/app/Config/Filters.php',
-        'Config\\ForeignCharacters' => __DIR__ . '/../..' . '/app/Config/ForeignCharacters.php',
-        'Config\\Format' => __DIR__ . '/../..' . '/app/Config/Format.php',
-        'Config\\Generators' => __DIR__ . '/../..' . '/app/Config/Generators.php',
-        'Config\\Honeypot' => __DIR__ . '/../..' . '/app/Config/Honeypot.php',
-        'Config\\Images' => __DIR__ . '/../..' . '/app/Config/Images.php',
-        'Config\\Kint' => __DIR__ . '/../..' . '/app/Config/Kint.php',
-        'Config\\Logger' => __DIR__ . '/../..' . '/app/Config/Logger.php',
-        'Config\\Migrations' => __DIR__ . '/../..' . '/app/Config/Migrations.php',
-        'Config\\Mimes' => __DIR__ . '/../..' . '/app/Config/Mimes.php',
-        'Config\\Modules' => __DIR__ . '/../..' . '/app/Config/Modules.php',
-        'Config\\Optimize' => __DIR__ . '/../..' . '/app/Config/Optimize.php',
-        'Config\\Pager' => __DIR__ . '/../..' . '/app/Config/Pager.php',
-        'Config\\Paths' => __DIR__ . '/../..' . '/app/Config/Paths.php',
-        'Config\\Publisher' => __DIR__ . '/../..' . '/app/Config/Publisher.php',
-        'Config\\Recaptcha' => __DIR__ . '/../..' . '/app/Config/Recaptcha.php',
-        'Config\\Routing' => __DIR__ . '/../..' . '/app/Config/Routing.php',
-        'Config\\Security' => __DIR__ . '/../..' . '/app/Config/Security.php',
-        'Config\\Services' => __DIR__ . '/../..' . '/app/Config/Services.php',
-        'Config\\Session' => __DIR__ . '/../..' . '/app/Config/Session.php',
-        'Config\\Toolbar' => __DIR__ . '/../..' . '/app/Config/Toolbar.php',
-        'Config\\UserAgents' => __DIR__ . '/../..' . '/app/Config/UserAgents.php',
-        'Config\\Validation' => __DIR__ . '/../..' . '/app/Config/Validation.php',
-        'Config\\View' => __DIR__ . '/../..' . '/app/Config/View.php',
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -3400,10 +3361,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit657ac079313fab046eb8c29fe1d6992b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit657ac079313fab046eb8c29fe1d6992b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit657ac079313fab046eb8c29fe1d6992b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit657ac079313fab046eb8c29fe1d6992b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit397827fb71c46723246bdc861ca2d498::$classMap;
 
         }, null, ClassLoader::class);
     }
