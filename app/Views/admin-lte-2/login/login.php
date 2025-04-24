@@ -14,7 +14,7 @@
                 <h3 class="box-title">ALUR PENDAFTARAN</h3>
               </div>
               <div class="box-body">
-                <p><img src="https://perjanjian.esensia.co.id/assets/theme/admin-lte-2/dist/img/alur_pendaftaran.jpg">
+                <p><img src="<?= base_url('public/assets/images/alur_pendaftaran.jpg') ?>">
                 </p>
               </div>
             </div>
@@ -23,7 +23,7 @@
             <div class="box box-primary rounded-0">
               <div class="box-header with-border text-center">
                 <a href="https://esensia.co.id" class="h1"><img
-                    src="https://perjanjian.esensia.co.id/assets/theme/admin-lte-3/dist/img/logo-header-es1.png"
+                    src="<?= base_url('public/assets/images/logo-header-es1.png') ?>"
                     alt="<?= $Pengaturan->judul ?>" class="brand-image img-rounded"
                     style="width: 209px; height: 94px; background-color: #fff;"></a>
               </div>
