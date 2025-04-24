@@ -50,7 +50,7 @@ class IonAuth extends \CodeIgniter\Config\BaseConfig
 		'users'          => 'tbl_ion_users',
 		'groups'         => 'tbl_ion_groups',
 		'users_groups'   => 'tbl_ion_users_groups',
-		'login_attempts' => 'tbl_ion_login_attempts',
+		'login_attempts' => 'tbl_ion_login_attempts', 
 	];
 
 	/**
