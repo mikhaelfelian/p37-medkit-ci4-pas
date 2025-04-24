@@ -8,10 +8,6 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="<?= base_url($Pengaturan->favicon) ?>">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet"
     href="<?= base_url('public/assets/theme/admin-lte-2/bower_components/bootstrap/dist/css/bootstrap.min.css') ?>">
   <!-- Font Awesome -->
@@ -24,8 +20,30 @@
   <link rel="stylesheet" href="<?= base_url('public/assets/theme/admin-lte-2/dist/css/AdminLTE.min.css') ?>">
   <!-- AdminLTE Skins -->
   <link rel="stylesheet" href="<?= base_url('public/assets/theme/admin-lte-2/dist/css/skins/_all-skins.min.css') ?>">
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet"
+    href="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-ui/themes/base/jquery-ui.min.css') ?>">
+  <!-- Toastr CSS -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/plugins/toastr/toastr.min.css') ?>">
+  <!-- Select2 CSS -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/plugins/select2/css/select2.min.css') ?>">
+  <link rel="stylesheet"
+    href="<?= base_url('public/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
   <!-- Custom styles -->
   <?= $this->renderSection('styles') ?>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -71,6 +89,8 @@
 
   <!-- jQuery 3 -->
   <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+  <!-- jQuery UI -->
+  <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-ui/jquery-ui.min.js') ?>"></script>
   <!-- Bootstrap 3.3.7 -->
   <script
     src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
@@ -79,6 +99,10 @@
     src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
   <!-- FastClick -->
   <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/fastclick/lib/fastclick.js') ?>"></script>
+  <!-- Toastr JS -->
+  <script src="<?= base_url('public/assets/plugins/toastr/toastr.min.js') ?>"></script>
+  <!-- Select2 JS -->
+  <script src="<?= base_url('public/assets/plugins/select2/js/select2.full.min.js') ?>"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url('public/assets/theme/admin-lte-2/dist/js/adminlte.min.js') ?>"></script>
   <!-- Custom scripts -->
