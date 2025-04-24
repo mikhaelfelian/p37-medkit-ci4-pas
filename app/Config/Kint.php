@@ -41,7 +41,8 @@ class Kint
     */
     public string $richTheme = 'aante-light.css';
     public bool $richFolder  = false;
-    public int $richSort = \Kint\Renderer\RichRenderer::SORT_FULL;
+    public int $richSort = 0; // Atau bisa sesuaikan dengan konstanta pengurutan lain yang ada di versi Kint terbaru.
+
 
 
     /**
