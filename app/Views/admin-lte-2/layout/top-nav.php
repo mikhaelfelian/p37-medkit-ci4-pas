@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,27 +35,35 @@
   <!-- Custom styles -->
   <?= $this->renderSection('styles') ?>
 
-
-
   <!-- jQuery 3 -->
   <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery/dist/jquery.min.js') ?>"></script>
   <!-- Bootstrap 3.3.7 -->
   <script
     src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+  <!-- jQuery UI -->
+  <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-ui/jquery-ui.min.js') ?>"></script>
+  <link rel="stylesheet"
+    href="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-ui/themes/base/jquery-ui.min.css') ?>">
   <!-- SlimScroll -->
   <script
     src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
   <!-- FastClick -->
   <script src="<?= base_url('public/assets/theme/admin-lte-2/bower_components/fastclick/lib/fastclick.js') ?>"></script>
   <!-- Toastr -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/plugins/toastr/toastr.min.css') ?>">
   <script src="<?= base_url('public/assets/plugins/toastr/toastr.min.js') ?>"></script>
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/plugins/select2/css/select2.min.css') ?>">
+  <link rel="stylesheet"
+    href="<?= base_url('public/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>">
+  <script src="<?= base_url('public/assets/plugins/select2/js/select2.full.min.js') ?>"></script>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 
 <body class="hold-transition skin-blue layout-top-nav">
   <div class="wrapper">
 
-    <?= $this->include('admin-lte-2/layouts/top-nav-navbar') ?>
+    <?= $this->include('admin-lte-2/layout/top-nav-navbar') ?>
 
     <!-- Full Width Column -->
     <div class="content-wrapper">
@@ -67,16 +76,6 @@
             <?= $this->renderSection('content') ?>
           <?php endif; ?>
         </section>
-
-        <!-- Main content -->
-        <section class="content">
-          <?php if (isset($view)): ?>
-            <?= view('admin-lte-2/' . $view, $this->data) ?>
-          <?php else: ?>
-            <?= $this->renderSection('content') ?>
-          <?php endif; ?>
-        </section>
-        <!-- /.content -->
       </div>
       <!-- /.container -->
     </div>
