@@ -4,7 +4,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-9">
             <?= form_open('pasien/set_daftar_baru.php', [
                 'autocomplete' => 'off',
                 'enctype' => 'multipart/form-data',
@@ -232,6 +232,31 @@
                 </div>
             </div>
             <?= form_close() ?>
+        </div>
+        <div class="col-lg-3">
+            <div class="box box-primary rounded-0">
+                <div class="box-header with-border">
+                    <h3 class="box-title">NOMOR ANTRIAN</h3>
+                </div>
+                <div class="box-body">
+                    <?php if (isset($_GET['id'])): ?>
+                        <iframe src="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" 
+                                style="width: 100%; height: 500px; border: none;"></iframe>
+                        <div class="text-center mt-3">
+                            <a href="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" 
+                               class="btn btn-primary" 
+                               target="_blank">
+                                <i class="fa fa-print"></i> Cetak Ulang
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <div class="text-center text-muted">
+                            <i class="fa fa-ticket fa-3x"></i>
+                            <p class="mt-2">Nomor antrian akan muncul setelah pendaftaran</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </section>

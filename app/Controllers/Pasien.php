@@ -205,7 +205,7 @@ class Pasien extends BaseController
         try {
             $cek_nik = $this->model->cekNIK($nik);
 
-            if ($cek_nik) {
+            if (!$cek_nik) {
                 throw new \RuntimeException('NIK sudah terdaftar, silahkan login dan daftar kembali.');
             }
 
@@ -214,11 +214,12 @@ class Pasien extends BaseController
             
             // Generate antrian number
             $no_antrian = $this->antrian->getNextQueueNumber($tgl_masuk, $sql_poli->kode);
+            $uuid       = generate_uuid();
 
             $data = [
-                'uuid'          => generate_uuid(),
+                'uuid'          => $uuid,
                 'tgl_simpan'    => date('Y-m-d H:i:s'),
-                'tgl_masuk'     => $tgl_masuk.' '.date('H:i:s'),
+                'tgl_masuk'     => tgl_indo_sys($tgl_masuk).' '.date('H:i:s'),
                 'id_ant'        => 0,
                 'id_gelar'      => (!empty($gelar) ? $gelar : '0'),
                 'id_poli'       => (!empty($poli) ? $poli : '0'),
@@ -275,7 +276,7 @@ class Pasien extends BaseController
                 throw new \RuntimeException('Gagal menyimpan data pendaftaran');
             }
 
-            return redirect()->to(base_url('pasien/pendaftaran_baru.php?id='.$id_daftar))
+            return redirect()->to(base_url('pasien/pendaftaran_baru.php?id='.$uuid))
                            ->with('success', 'Pendaftaran berhasil. No. Antrian: ' . $no_antrian);
 
         } catch (\Exception $e) {
@@ -311,4 +312,105 @@ class Pasien extends BaseController
         }
     }
 
+    /**
+     * Generate PDF antrian for POS 58 printer
+     * 
+     * @return void
+     */
+    public function pdf_antrian()
+    {        
+        $uuid = $this->request->getGet('id');
+        
+        // Get antrian data by UUID
+        $antrian = $this->model->where('uuid', $uuid)->first();
+        if (!$antrian) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // Get poli data
+        $poli = $this->antrian_poli->where('id_poli', $antrian->id_poli)->first();
+        if (!$poli) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // Get dokter data if available
+        $dokter = null;
+        if (!empty($antrian->id_dokter)) {
+            $dokter = $this->dokter->find($antrian->id_dokter);
+        }
+
+        // Create new PDF document
+        $pdf = new \FPDF('P', 'cm', array(5.8, 10));
+        $pdf->AddPage();
+        $pdf->SetMargins(0.5, 0.2, 0.5);
+
+        // Blok Judul
+        // Center the page content
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->MultiCell(4.8, 0.5, $this->pengaturan->judul, 0, 'C');
+        $pdf->Ln(0);
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->SetFont('Arial', '', 5);
+        $pdf->MultiCell(4.8, 0.5, $this->pengaturan->alamat, 'B', 'C');
+        $pdf->Ln();
+
+        // Optional Watermark
+        // if (file_exists($watermark_path)) {
+        //     $pdf->Image($watermark_path, 1.25, 1, 4, 6);
+        // }
+        $fill = false;
+        $pdf->SetFont('Arial', '', 5);
+        
+        // Center all content horizontally
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, 'ANTRIAN ONLINE', '', 1, 'C', $fill);
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, $poli->poli, '', 1, 'C', $fill);
+        $pdf->Ln(1);
+
+        // Nomor Antrian
+        $pdf->SetFont('Arial', 'B', 25);
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, sprintf('%03d', $antrian->no_urut), '', 1, 'C', $fill);
+        $pdf->Ln(1);
+
+        // Info Pasien
+        $pdf->SetFont('Arial', '', 5);
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, $antrian->nama, '', 1, 'C', $fill);
+        
+        // Info Dokter
+        if ($dokter) {
+            $nama_dokter = (!empty($dokter->nama_dpn) ? $dokter->nama_dpn.' ' : '')
+                        . $dokter->nama
+                        . (!empty($dokter->nama_blk) ? ', '.$dokter->nama_blk : '');
+            $pdf->SetX((5.8 - 4.8) / 2);
+            $pdf->Cell(4.8, 0.25, $nama_dokter, '', 1, 'C', $fill);
+        }
+        
+        // Tanggal
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, tgl_indo5(date('Y-m-d', strtotime($antrian->tgl_masuk))), '', 1, 'C', $fill);
+        
+        // Footer
+        $pdf->SetX((5.8 - 4.8) / 2);
+        $pdf->Cell(4.8, 0.25, 'TERIMAKASIH ATAS KUNJUNGAN ANDA', '', 1, 'C', $fill);
+        $pdf->Ln();
+
+        // Set colors for additional styling
+        $pdf->SetFillColor(235, 232, 228);
+        $pdf->SetTextColor(0);
+        $pdf->SetFont('Arial', '', 10);
+
+        // Get output type from URL or default to 'I'
+        $type = $this->request->getGet('type') ?? 'I';
+
+        // Clear any output that might have been sent
+        ob_end_clean();
+
+        // Output PDF
+        $pdf->Output('nomor.pdf', $type);
+        exit;
+    }
 } 
