@@ -56,7 +56,7 @@ class Auth extends BaseController
         
         # Get form data
         $user = $this->request->getVar('user');
-        $pass = $this->request->getVar('pass');
+        echo $pass = $this->request->getVar('pass');
         $inga = $this->request->getVar('ingat');
         $recaptchaResponse = $this->request->getVar('recaptcha_response');
         
@@ -70,7 +70,7 @@ class Auth extends BaseController
                 'type' => 'error',
                 'message' => 'reCAPTCHA verification failed'
             ]);
-            return redirect()->back();
+            return redirect()->to(base_url());
         }
         
         # Validation rules
@@ -97,7 +97,7 @@ class Auth extends BaseController
 
         $cek = $this->ionAuth->usernameCheck($user);
         if (!$this->validate($aturan)) {
-            return redirect()->back()
+            return redirect()->to(base_url())
                 ->withInput()
                 ->with('error', 'ID Pengguna atau Kata Sandi salah!');
         }
@@ -108,10 +108,11 @@ class Auth extends BaseController
         }else{
             // # Try to login
             $inget_ya = ($inga == '1' ? TRUE : FALSE);
+
             $login = $this->ionAuth->login($user, $pass, $inget_ya);
 
             if(!$login) {
-                return redirect()->back()->with('error', 'ID Pengguna atau Kata Sandi salah!');
+                return redirect()->to(base_url())->with('error', 'ID Pengguna atau Kata Sandi salah!');
             }else{
                 return redirect()->to('/dashboard')->with('success', 'Login berhasil!');
             }
