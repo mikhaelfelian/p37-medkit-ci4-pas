@@ -259,6 +259,14 @@
                     </td>
                     <td>
                       <?= anchor(base_url('pasien/pdf_print.php?id=' . $row->uuid.'&type=D'), '<i class="fa fa-download"></i> Download', ['class' => 'btn btn-xs btn-primary']) ?>
+                      <?= anchor(
+                          base_url('pasien/set_daftar_batal.php?uuid=' . $row->uuid),
+                          '<i class="fa fa-times"></i> Batal',
+                          [
+                              'class' => 'btn btn-xs btn-danger',
+                              'onclick' => "return confirm('Apakah Anda yakin ingin membatalkan pendaftaran ini?')"
+                          ]
+                      ) ?>
                     </td>
                   </tr>
                 <?php endforeach; ?>

@@ -290,6 +290,56 @@ class Pasien extends BaseController
     }
 
     /**
+     * Cancel patient registration
+     * 
+     * @return \CodeIgniter\HTTP\Response
+     */
+    public function set_daftar_batal()
+    {
+        if (!$this->ionAuth->loggedIn()) {
+            return redirect()->to(base_url())
+                           ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+        }
+
+        $uuid = $this->request->getGet('uuid');
+        if (empty($uuid)) {
+            return redirect()->back()
+                           ->with('error', 'UUID tidak valid');
+        }
+
+        try {
+            // Get registration data
+            $daftar = $this->model->where('uuid', $uuid)->first();
+            if (!$daftar) {
+                throw new \RuntimeException('Data pendaftaran tidak ditemukan');
+            }
+
+            // Check if registration can be cancelled
+            if ($daftar->status_dft != '2') {
+                throw new \RuntimeException('Pendaftaran tidak dapat dibatalkan karena status tidak sesuai');
+            }
+
+            // Delete antrian if exists
+            if (!empty($daftar->id_ant)) {
+                if (!$this->antrian->delete($daftar->id_ant)) {
+                    throw new \RuntimeException('Gagal menghapus data antrian');
+                }
+            }
+
+            // Delete registration
+            if (!$this->model->where('uuid', $uuid)->delete()) {
+                throw new \RuntimeException('Gagal menghapus data pendaftaran');
+            }
+
+            return redirect()->back()
+                           ->with('success', 'Pendaftaran berhasil dibatalkan');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                           ->with('error', $e->getMessage());
+        }
+    }
+
+    /**
      * Display patient's lab history
      * 
      * @return mixed
