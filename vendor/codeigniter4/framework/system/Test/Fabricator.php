@@ -15,14 +15,13 @@ namespace CodeIgniter\Test;
 
 use Closure;
 use CodeIgniter\Exceptions\FrameworkException;
-use CodeIgniter\Exceptions\InvalidArgumentException;
-use CodeIgniter\Exceptions\RuntimeException;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 use Config\App;
 use Faker\Factory;
 use Faker\Generator;
-use InvalidArgumentException as BaseInvalidArgumentException;
+use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Fabricator
@@ -360,7 +359,7 @@ class Fabricator
             $this->faker->getFormatter($field);
 
             return $field;
-        } catch (BaseInvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             // No match, keep going
         }
 
@@ -380,12 +379,12 @@ class Fabricator
 
         // Check some common partials
         foreach (['email', 'name', 'title', 'text', 'date', 'url'] as $term) {
-            if (str_contains(strtolower($field), strtolower($term))) {
+            if (stripos($field, $term) !== false) {
                 return $term;
             }
         }
 
-        if (str_contains(strtolower($field), 'phone')) {
+        if (stripos($field, 'phone') !== false) {
             return 'phoneNumber';
         }
 
@@ -438,21 +437,21 @@ class Fabricator
                 if (isset($this->modifiedFields['unique'][$field])) {
                     $faker = $faker->unique(
                         $this->modifiedFields['unique'][$field]['reset'],
-                        $this->modifiedFields['unique'][$field]['maxRetries'],
+                        $this->modifiedFields['unique'][$field]['maxRetries']
                     );
                 }
 
                 if (isset($this->modifiedFields['optional'][$field])) {
                     $faker = $faker->optional(
                         $this->modifiedFields['optional'][$field]['weight'],
-                        $this->modifiedFields['optional'][$field]['default'],
+                        $this->modifiedFields['optional'][$field]['default']
                     );
                 }
 
                 if (isset($this->modifiedFields['valid'][$field])) {
                     $faker = $faker->valid(
                         $this->modifiedFields['valid'][$field]['validator'],
-                        $this->modifiedFields['valid'][$field]['maxRetries'],
+                        $this->modifiedFields['valid'][$field]['maxRetries']
                     );
                 }
 

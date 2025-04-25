@@ -329,6 +329,8 @@ class ImageMagickHandler extends BaseHandler
     /**
      * Handler-specific method for overlaying text on an image.
      *
+     * @return void
+     *
      * @throws Exception
      */
     protected function _text(string $text, array $options = [])

@@ -16,7 +16,6 @@ namespace CodeIgniter\HTTP;
 use CodeIgniter\Cookie\Cookie;
 use CodeIgniter\Cookie\CookieStore;
 use CodeIgniter\Cookie\Exceptions\CookieException;
-use CodeIgniter\Exceptions\InvalidArgumentException;
 use CodeIgniter\HTTP\Exceptions\HTTPException;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Pager\PagerInterface;
@@ -24,6 +23,7 @@ use CodeIgniter\Security\Exceptions\SecurityException;
 use Config\Cookie as CookieConfig;
 use DateTime;
 use DateTimeZone;
+use InvalidArgumentException;
 
 /**
  * Response Trait
@@ -406,19 +406,16 @@ trait ResponseTrait
             if ($value instanceof Header) {
                 header(
                     $name . ': ' . $value->getValueLine(),
-                    true,
-                    $this->getStatusCode(),
+                    false,
+                    $this->getStatusCode()
                 );
             } else {
-                $replace = true;
-
                 foreach ($value as $header) {
                     header(
                         $name . ': ' . $header->getValueLine(),
-                        $replace,
-                        $this->getStatusCode(),
+                        false,
+                        $this->getStatusCode()
                     );
-                    $replace = false;
                 }
             }
         }
@@ -515,7 +512,7 @@ trait ResponseTrait
         $prefix = '',
         $secure = null,
         $httponly = null,
-        $samesite = null,
+        $samesite = null
     ) {
         if ($name instanceof Cookie) {
             $this->cookieStore = $this->cookieStore->put($name);

@@ -226,7 +226,7 @@ class Forge extends BaseForge
         if (
             ! empty($attributes['AUTO_INCREMENT'])
             && $attributes['AUTO_INCREMENT'] === true
-            && str_contains(strtolower($field['type']), 'int')
+            && stripos($field['type'], 'int') !== false
         ) {
             $field['type']           = 'INTEGER PRIMARY KEY';
             $field['default']        = '';
