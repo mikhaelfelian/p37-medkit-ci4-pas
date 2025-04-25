@@ -26,8 +26,8 @@
           <i class="fa fa-user-plus"></i> <span>Pendaftaran</span> 
         </a>
       </li>
-      <li>
-        <a href="#">
+      <li<?= isMenuActive('pasien/riwayat_lab.php') ? ' class="active"' : '' ?>>
+        <a href="<?= base_url('pasien/riwayat_lab.php')?>">
           <i class="fa fa-flask"></i> <span>Riwayat Lab</span>
         </a>
       </li>

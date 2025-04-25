@@ -5,13 +5,14 @@ namespace App\Controllers;
 use App\Models\MedDaftarModel;
 use App\Models\MedAntrianModel;
 use App\Models\MedAntrianPoliModel;
+use App\Models\MedLabModel;
 use App\Models\PengaturanModel;
 use App\Models\GelarModel;
 use App\Models\PenjaminModel;
 use App\Models\PoliModel;
 use App\Models\JenisKerjaModel;
-use App\Models\VDokterModel;
 use App\Models\PasienModel;
+use App\Models\VDokterModel;
 use ReCaptcha\ReCaptcha;
 use CodeIgniter\Controller;
 
@@ -32,6 +33,7 @@ class Pasien extends BaseController
         $this->model        = new MedDaftarModel();
         $this->antrian      = new MedAntrianModel();
         $this->antrian_poli = new MedAntrianPoliModel();
+        $this->lab          = new MedLabModel();
         $this->gelar        = new GelarModel();
         $this->penjamin     = new PenjaminModel();
         $this->poli         = new PoliModel();
@@ -89,7 +91,7 @@ class Pasien extends BaseController
             return view('admin-lte-2/pasien/daftar', $data);
         }else{
             return redirect()->to(base_url())
-                             ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+                             ->with('error', message: 'Authentifikasi gagal, silahkan login ulang !!');
         }
     }
 
@@ -290,6 +292,42 @@ class Pasien extends BaseController
         }
     }
 
+    /**
+     * Display patient's lab history
+     * 
+     * @return mixed
+     */
+    public function riwayat_lab()
+    {
+        if ($this->ionAuth->loggedIn()) {
+            $id_user = $this->ionAuth->user()->row()->id;
+            $pasien = $this->pasien->where('id_user', $id_user)->first();
+            
+            if (!$pasien) {
+                return redirect()->to(base_url())
+                                ->with('error', 'Data pasien tidak ditemukan');
+            }
+            
+            // Get lab history for the patient
+            $riwayat_lab = $this->lab->getLabByPatient($pasien->id);
+            
+            $data = [
+                'title'      => 'Pemeriksaaan',
+                'subtitle'   => 'Laboratorium',
+                'Pengaturan' => $this->pengaturan,
+                'user'       => $this->ionAuth->user()->row(),
+                'pasien'     => $pasien,
+                'riwayat'    => $riwayat_lab
+            ];
+            
+            return view('admin-lte-2/pasien/riwayat_lab', $data);
+        } else {
+            return redirect()->to(base_url())
+                            ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+        }
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *
