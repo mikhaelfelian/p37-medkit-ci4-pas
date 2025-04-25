@@ -8,7 +8,7 @@
         "forum": "https://forum.codeigniter.com/",
         "source": "https://github.com/codeigniter4/CodeIgniter4",
         "slack": "https://codeigniterchat.slack.com"
-    },
+    }, 
     "require": {
         "php": "^8.1",
         "benedmunds/codeigniter-ion-auth": "4.x-dev",
