@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "397827fb71c46723246bdc861ca2d498",
+    "content-hash": "397827fb71c46723246bdc861ca2d498", 
     "packages": [
         {
             "name": "benedmunds/codeigniter-ion-auth",
