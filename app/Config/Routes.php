@@ -24,6 +24,7 @@ $routes->get('/dashboard', 'Dashboard::index', ['namespace' => 'App\Controllers'
 */
 $routes->group('pasien', function ($routes) {
     $routes->get('/', 'Pasien::index');
+    $routes->get('/index.php', 'Pasien::index');
     $routes->get('pendaftaran_baru.php', 'Pasien::daftar_baru');
     $routes->get('pendaftaran.php', 'Pasien::daftar');
     $routes->post('set_daftar.php', 'Pasien::set_daftar');

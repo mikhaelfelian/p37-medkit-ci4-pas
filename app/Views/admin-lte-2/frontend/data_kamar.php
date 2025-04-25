@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 function loadKamarData() {
     $.ajax({
-        url: '<?= base_url('home/json_data_kamar') ?>',
+        url: '<?= base_url('pasien/data_kamar_json.php') ?>',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
@@ -55,6 +55,7 @@ function loadKamarData() {
                 if (item.sisa <= 0) {
                     sisaClass = 'text-danger';
                 }
+                
                 html += '<tr>';
                 html += '<td>' + item.no + '</td>';
                 html += '<td>' + item.kelas + '</td>';

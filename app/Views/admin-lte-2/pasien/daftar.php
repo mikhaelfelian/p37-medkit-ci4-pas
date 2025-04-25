@@ -85,23 +85,23 @@
                   <i class="fa fa-calendar"></i>
                 </div>
                 <?= form_input([
-                  'name' => 'tgl_lahir',
-                  'id' => 'tgl_lahir',
-                  'class' => 'form-control',
+                  'name'        => 'tgl_lahir',
+                  'id'          => 'tgl_lahir',
+                  'class'       => 'form-control',
                   'placeholder' => 'dd-mm-yyyy ...',
-                  'readonly' => 'TRUE',
-                  'value' => set_value('tgl_lahir', $pasien->tgl_lahir ?? '')
+                  'readonly'    => 'TRUE',
+                  'value'       => set_value('tgl_lahir', $pasien->tgl_lahir ?? '')
                 ]) ?>
               </div>
             </div>
             <div class="form-group<?= validation_show_error('no_hp') ? ' has-error' : '' ?>">
               <label class="control-label">No. HP / WA <span class="text-danger">*</span></label>
               <?= form_input([
-                'name' => 'no_hp',
-                'id' => 'no_hp',
-                'class' => 'form-control',
+                'name'        => 'no_hp',
+                'id'          => 'no_hp',
+                'class'       => 'form-control',
                 'placeholder' => 'Nomor kontak WA pasien / keluarga pasien ...',
-                'value' => set_value('no_hp', $pasien->no_hp ?? '')
+                'value'       => set_value('no_hp', $pasien->no_hp ?? '')
               ]) ?>
             </div>
           </div>
@@ -109,24 +109,24 @@
             <div class="form-group<?= validation_show_error('alamat') ? ' has-error' : '' ?>">
               <label class="control-label">Alamat KTP<small><i>* Sesuai Identitas</i></small></label>
               <?= form_textarea([
-                'name' => 'alamat',
-                'id' => 'alamat',
-                'class' => 'form-control',
-                'style' => 'height: 108px;',
+                'name'        => 'alamat',
+                'id'          => 'alamat',
+                'class'       => 'form-control',
+                'style'       => 'height: 108px;',
                 'placeholder' => 'Mohon diisi alamat sesuai pada identitas ...',
-                'value' => set_value('alamat', $pasien->alamat ?? '')
+                'value'       => set_value('alamat', $pasien->alamat ?? '')
               ]) ?>
             </div>
             <div class="form-group<?= validation_show_error('alamat_dom') ? ' has-error' : '' ?>">
               <label class="control-label">Alamat Domisili<small><i>* Sesuai
                     Domisili</i></small></label>
               <?= form_textarea([
-                'name' => 'alamat_dom',
-                'id' => 'alamat_dom',
-                'class' => 'form-control',
-                'style' => 'height: 108px;',
+                'name'        => 'alamat_dom',
+                'id'          => 'alamat_dom',
+                'class'       => 'form-control',
+                'style'       => 'height: 108px;',
                 'placeholder' => 'Mohon diisi alamat sesuai domisili ...',
-                'value' => set_value('alamat_dom', $pasien->alamat_dom ?? '')
+                'value'       => set_value('alamat_dom', $pasien->alamat_dom ?? '')
               ]) ?>
             </div>
             <div class="form-group">
@@ -142,11 +142,11 @@
             <div class="form-group">
               <label class="control-label">No. Rmh</label>
               <?= form_input([
-                'name' => 'no_rmh',
-                'id' => 'no_rmh',
-                'class' => 'form-control',
+                'name'        => 'no_rmh',
+                'id'          => 'no_rmh',
+                'class'       => 'form-control',
                 'placeholder' => 'Isikan Nomor rumah (PSTN) pasien / keluarga pasien ...',
-                'value' => set_value('no_rmh', $pasien->no_rmh ?? '')
+                'value'       => set_value('no_rmh', $pasien->no_rmh ?? '')
               ]) ?>
             </div>
           </div>
@@ -180,11 +180,11 @@
             <div class="form-group">
               <label class="control-label">Alergi Obat ?</label>
               <?= form_input([
-                'name' => 'alergi',
-                'id' => 'alergi',
-                'class' => 'form-control',
+                'name'        => 'alergi',
+                'id'          => 'alergi',
+                'class'       => 'form-control',
                 'placeholder' => 'Ada alergi obat ...',
-                'value' => set_value('alergi', $pasien->alergi ?? '')
+                'value'       => set_value('alergi', $pasien->alergi ?? '')
               ]) ?>
             </div>
             <div class="form-group<?= validation_show_error('tgl_masuk') ? ' has-error' : '' ?>">
@@ -194,11 +194,11 @@
                   <i class="fa fa-calendar"></i>
                 </div>
                 <?= form_input([
-                  'name' => 'tgl_masuk',
-                  'id' => 'tgl_masuk',
-                  'class' => 'form-control pull-right',
+                  'name'        => 'tgl_masuk',
+                  'id'          => 'tgl_masuk',
+                  'class'       => 'form-control pull-right',
                   'placeholder' => 'Silahkan isi tgl periksa ...',
-                  'value' => set_value('tgl_masuk', date('m/d/Y'))
+                  'value'       => set_value('tgl_masuk', date('m/d/Y'))
                 ]) ?>
               </div>
             </div>

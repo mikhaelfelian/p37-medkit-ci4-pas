@@ -29,8 +29,9 @@ class Home extends BaseController
     public function data_kamar()
     {
         $data = [
-            'title' => 'INFORMASI KETERSEDIAAN KAMAR',
-            'Pengaturan' => $this->pengaturan
+            'title'         => 'INFORMASI KETERSEDIAAN KAMAR',
+            'Pengaturan'    => $this->pengaturan,
+            'kamar'         => $this->kamar
         ];
         
         return view('admin-lte-2/frontend/data_kamar', $data);
