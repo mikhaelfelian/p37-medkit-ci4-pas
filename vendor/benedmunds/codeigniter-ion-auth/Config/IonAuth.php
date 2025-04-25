@@ -143,7 +143,7 @@ class IonAuth extends \CodeIgniter\Config\BaseConfig
 	 | The library will fail for empty password or password size above 4096 bytes.
 	 | This is an arbitrary (long) value to protect against DOS attack.
 	 */
-	public $siteTitle                = 'ESENSIA HOSPITAL';       // Site Title, example.com
+	public $siteTitle                = 'SIMEDIS';       // Site Title, example.com
 	public $adminEmail               = 'admin@example.com'; // Admin Email, admin@example.com
 	public $defaultGroup             = 'pasien';           // Default group, use name
 	public $adminGroup               = 'admin';             // Default administrators group, use name
@@ -167,6 +167,7 @@ class IonAuth extends \CodeIgniter\Config\BaseConfig
 	public $recheckTimer             = 0;                   /* The number of seconds after which the session is checked again against database to see if the user still exists and is active.
 																	Leave 0 if you don't want session recheck. if you really think you need to recheck the session against database, we would
 																	recommend a higher value, as this would affect performance */
+
 	/**
 	 * Cookie options.
 	 * rememberCookieName Default: remember_code
