@@ -87,7 +87,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> <?= env('app.version', '1.0.0') ?>
         </div>
-        <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= $Pengaturan->website ?>"><?= $Pengaturan->judul ?></a>.</strong> All rights
+        <strong>Copyright &copy; <?= date('Y') ?> <a href="https://<?= $Pengaturan->website ?>"><?= $Pengaturan->judul ?></a>.</strong> All rights
         reserved.
       </div>
       <!-- /.container -->
