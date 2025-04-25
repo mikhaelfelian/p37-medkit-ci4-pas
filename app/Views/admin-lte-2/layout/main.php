@@ -104,6 +104,8 @@
   <!-- Select2 JS -->
   <script src="<?= base_url('public/assets/plugins/select2/js/select2.full.min.js') ?>"></script>
 
+  <!-- AdminLTE App -->
+  <script src="<?= base_url('public/assets/theme/admin-lte-2/dist/js/adminlte.min.js') ?>"></script>
   <!-- Custom scripts -->
   <?= $this->renderSection('scripts') ?>
 
