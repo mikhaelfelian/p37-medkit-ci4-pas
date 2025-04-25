@@ -57,8 +57,6 @@ class Home extends BaseController
             ];
         }
 
-        return $this->response->setJSON([
-            'data' => $kamar
-        ]);
+        return $this->response->setJSON($kamar);
     }
 } 
