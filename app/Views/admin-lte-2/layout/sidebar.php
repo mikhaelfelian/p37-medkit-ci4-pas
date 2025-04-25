@@ -36,11 +36,11 @@
           <i class="fa fa-file-text"></i> <span>Riwayat Rontgen</span>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#">
           <i class="fa fa-paperclip"></i> <span>Riwayat Berkas</span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </section>
   <!-- /.sidebar -->
