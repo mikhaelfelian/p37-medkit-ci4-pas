@@ -31,8 +31,8 @@
           <i class="fa fa-flask"></i> <span>Riwayat Lab</span>
         </a>
       </li>
-      <li>
-        <a href="#">
+      <li<?= isMenuActive('pasien/riwayat_rad.php') ? ' class="active"' : '' ?>>
+        <a href="<?= base_url('pasien/riwayat_rad.php')?>">
           <i class="fa fa-file-text"></i> <span>Riwayat Rontgen</span>
         </a>
       </li>

@@ -6,6 +6,7 @@ use App\Models\MedDaftarModel;
 use App\Models\MedAntrianModel;
 use App\Models\MedAntrianPoliModel;
 use App\Models\MedLabModel;
+use App\Models\MedRadModel;
 use App\Models\PengaturanModel;
 use App\Models\GelarModel;
 use App\Models\PenjaminModel;
@@ -34,6 +35,7 @@ class Pasien extends BaseController
         $this->antrian      = new MedAntrianModel();
         $this->antrian_poli = new MedAntrianPoliModel();
         $this->lab          = new MedLabModel();
+        $this->rad          = new MedRadModel();
         $this->gelar        = new GelarModel();
         $this->penjamin     = new PenjaminModel();
         $this->poli         = new PoliModel();
@@ -321,6 +323,41 @@ class Pasien extends BaseController
             ];
             
             return view('admin-lte-2/pasien/riwayat_lab', $data);
+        } else {
+            return redirect()->to(base_url())
+                            ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+        }
+    }
+
+    /**
+     * Display patient's radiology history
+     * 
+     * @return mixed
+     */
+    public function riwayat_rad()
+    {
+        if ($this->ionAuth->loggedIn()) {
+            $id_user = $this->ionAuth->user()->row()->id;
+            $pasien = $this->pasien->where('id_user', $id_user)->first();
+            
+            if (!$pasien) {
+                return redirect()->to(base_url())
+                                ->with('error', 'Data pasien tidak ditemukan');
+            }
+            
+            // Get radiology history for the patient
+            $riwayat_rad = $this->rad->getRadByPatient($pasien->id);
+            
+            $data = [
+                'title'      => 'Pemeriksaaan',
+                'subtitle'   => 'Radiologi',
+                'Pengaturan' => $this->pengaturan,
+                'user'       => $this->ionAuth->user()->row(),
+                'pasien'     => $pasien,
+                'riwayat'    => $riwayat_rad
+            ];
+            
+            return view('admin-lte-2/pasien/riwayat_rad', $data);
         } else {
             return redirect()->to(base_url())
                             ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
