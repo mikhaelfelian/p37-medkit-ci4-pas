@@ -36,11 +36,11 @@
           <i class="fa fa-file-text"></i> <span>Riwayat Rontgen</span>
         </a>
       </li>
-      <!-- <li>
-        <a href="#">
+      <li<?= isMenuActive('pasien/riwayat_berkas.php') ? ' class="active"' : '' ?>>
+        <a href="<?= base_url('pasien/riwayat_berkas.php')?>">
           <i class="fa fa-paperclip"></i> <span>Riwayat Berkas</span>
         </a>
-      </li> -->
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->

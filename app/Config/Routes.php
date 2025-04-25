@@ -34,5 +34,6 @@ $routes->group('pasien', function ($routes) {
     $routes->get('data_kamar_json.php', 'Home::json_data_kamar');
     $routes->get('riwayat_lab.php', 'Pasien::riwayat_lab');
     $routes->get('riwayat_rad.php', 'Pasien::riwayat_rad');
+    $routes->get('riwayat_berkas.php', 'Pasien::riwayat_berkas');
 });
 ?>

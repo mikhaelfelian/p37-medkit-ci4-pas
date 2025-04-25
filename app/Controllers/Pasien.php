@@ -7,6 +7,7 @@ use App\Models\MedAntrianModel;
 use App\Models\MedAntrianPoliModel;
 use App\Models\MedLabModel;
 use App\Models\MedRadModel;
+use App\Models\MedFileModel;
 use App\Models\PengaturanModel;
 use App\Models\GelarModel;
 use App\Models\PenjaminModel;
@@ -36,6 +37,7 @@ class Pasien extends BaseController
         $this->antrian_poli = new MedAntrianPoliModel();
         $this->lab          = new MedLabModel();
         $this->rad          = new MedRadModel();
+        $this->file         = new MedFileModel();
         $this->gelar        = new GelarModel();
         $this->penjamin     = new PenjaminModel();
         $this->poli         = new PoliModel();
@@ -358,6 +360,41 @@ class Pasien extends BaseController
             ];
             
             return view('admin-lte-2/pasien/riwayat_rad', $data);
+        } else {
+            return redirect()->to(base_url())
+                            ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
+        }
+    }
+
+    /**
+     * Display patient's document history
+     * 
+     * @return mixed
+     */
+    public function riwayat_berkas()
+    {
+        if ($this->ionAuth->loggedIn()) {
+            $id_user = $this->ionAuth->user()->row()->id;
+            $pasien = $this->pasien->where('id_user', $id_user)->first();
+            
+            if (!$pasien) {
+                return redirect()->to(base_url())
+                                ->with('error', 'Data pasien tidak ditemukan');
+            }
+            
+            // Get document history for the patient
+            $riwayat_berkas = $this->file->getFilesByPatient($pasien->id);
+            
+            $data = [
+                'title'      => 'Riwayat',
+                'subtitle'   => 'Berkas',
+                'Pengaturan' => $this->pengaturan,
+                'user'       => $this->ionAuth->user()->row(),
+                'pasien'     => $pasien,
+                'riwayat'    => $riwayat_berkas
+            ];
+            
+            return view('admin-lte-2/pasien/riwayat_berkas', $data);
         } else {
             return redirect()->to(base_url())
                             ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
