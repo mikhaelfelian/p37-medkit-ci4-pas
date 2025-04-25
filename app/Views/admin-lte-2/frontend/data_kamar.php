@@ -50,7 +50,7 @@ function loadKamarData() {
         dataType: 'json',
         success: function(response) {
             var html = '';
-            $.each(response.data, function(index, item) {
+            $.each(response, function(index, item) {
                 var sisaClass = '';
                 if (item.sisa <= 0) {
                     sisaClass = 'text-danger';
