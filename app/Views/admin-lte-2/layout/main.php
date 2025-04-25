@@ -103,10 +103,28 @@
   <script src="<?= base_url('public/assets/plugins/toastr/toastr.min.js') ?>"></script>
   <!-- Select2 JS -->
   <script src="<?= base_url('public/assets/plugins/select2/js/select2.full.min.js') ?>"></script>
-  <!-- AdminLTE App -->
-  <script src="<?= base_url('public/assets/theme/admin-lte-2/dist/js/adminlte.min.js') ?>"></script>
+
   <!-- Custom scripts -->
   <?= $this->renderSection('scripts') ?>
-</body>
 
+  <!-- Add this script for toastr notifications -->
+
+
+  <!-- Flash messages -->
+  <?php if (session()->getFlashdata('success')): ?>
+    <?php echo toast_show(session()->getFlashdata('success'), 'success'); ?>
+  <?php endif; ?>
+
+  <?php if (session()->getFlashdata('error')): ?>
+    <?php echo toast_show(session()->getFlashdata('error'), 'error'); ?>
+  <?php endif; ?>
+
+  <?php if (session()->getFlashdata('warning')): ?>
+    <?php echo toast_show(session()->getFlashdata('warning'), 'warning'); ?>
+  <?php endif; ?>
+
+  <?php if (session()->getFlashdata('info')): ?>
+    <?php echo toast_show(session()->getFlashdata('info'), 'info'); ?>
+  <?php endif; ?>
+</body>
 </html>
