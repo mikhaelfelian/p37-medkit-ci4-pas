@@ -183,4 +183,30 @@ class MedDaftarModel extends Model
     {
         return $this->db->insertID();
     }
+
+    /**
+     * Get pendaftaran data with joined poli and dokter information
+     * 
+     * @param array $where Optional where conditions
+     * @return array Result of the query
+     */
+    public function getPendaftaran($where = null)
+    {
+        $builder = $this->db->table('tbl_pendaftaran');
+        
+        // Join with poli table
+        $builder->join('tbl_m_poli', 'tbl_m_poli.id = tbl_pendaftaran.id_poli', 'left');
+        
+        // Join with karyawan table for dokter information
+        $builder->join('tbl_m_karyawan', 'tbl_m_karyawan.id = tbl_pendaftaran.id_dokter', 'left');
+        
+        // Select only specific fields: id, dokter, and poli
+        $builder->select('tbl_pendaftaran.id, tbl_pendaftaran.uuid, tbl_pendaftaran.tgl_simpan, tbl_pendaftaran.tgl_masuk, tbl_pendaftaran.status_akt as status, tbl_m_poli.lokasi as poli, tbl_m_karyawan.nama_dpn, tbl_m_karyawan.nama, tbl_m_karyawan.nama_blk');
+        // Add where conditions if provided
+        if ($where !== null) {
+            $builder->where('id_pasien', (string)$where);
+        }
+        
+        return $builder->get()->getResult();
+    }
 } 

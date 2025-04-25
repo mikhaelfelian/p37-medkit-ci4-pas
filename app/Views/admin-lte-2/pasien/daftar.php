@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <!-- Jadwal Dokter -->
 <div class="row">
-  <div class="col-lg-9">
+  <div class="col-lg-8">
     <div class="box box-primary">
       <div class="box-header with-border">
         <h3 class="box-title">Pendaftaran Mandiri</h3>
@@ -32,7 +32,8 @@
                   <select name="gelar" class="form-control required">
                     <option value="">- Pilih -</option>
                     <?php foreach ($gelar as $g): ?>
-                      <option value="<?= $g->id ?>" <?= set_select('gelar', $g->id, ($pasien->id_gelar ?? '') == $g->id) ?>><?= $g->gelar ?></option>
+                      <option value="<?= $g->id ?>" <?= set_select('gelar', $g->id, ($pasien->id_gelar ?? '') == $g->id) ?>>
+                        <?= $g->gelar ?></option>
                     <?php endforeach; ?>
                   </select>
                   <?php if (session()->getFlashdata('errors.gelar')): ?>
@@ -216,6 +217,62 @@
       </div>
       <?= form_close() ?>
     </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Riwayat Pendaftaran</h3>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">No</th>
+                <th>Tanggal</th>
+                <th colspan="2">Keterangan</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (!empty($riwayat)): ?>
+                <?php $no = 1;
+                foreach ($riwayat as $row): ?>
+                  <tr>
+                    <td class="text-center"><?= $no++ ?></td>
+                    <td><?= date('d-m-Y', strtotime($row->tgl_masuk)) ?></td>
+                    <td colspan="2">
+                      <?php echo $row->poli ?>
+                      <?php
+                      $dokterName = '';
+                      if (!empty($row->nama_dpn)) {
+                        $dokterName .= $row->nama_dpn . ' ';
+                      }
+                      if (!empty($row->nama)) {
+                        $dokterName .= ucwords(strtolower($row->nama));
+                      }
+                      if (!empty($row->nama_blk)) {
+                        $dokterName .= ' ' . $row->nama_blk;
+                      }
+                      echo '<br/><small>'.trim($dokterName).'</small>';
+                      ?>
+                    </td>
+                    <td>
+                      <?= anchor(base_url('pasien/pdf_print.php?id=' . $row->uuid.'&type=D'), '<i class="fa fa-download"></i> Download', ['class' => 'btn btn-xs btn-primary']) ?>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr>
+                  <td colspan="5" class="text-center">Tidak ada riwayat pendaftaran</td>
+                </tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 <!-- /.box -->

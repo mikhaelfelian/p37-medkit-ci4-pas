@@ -26,6 +26,7 @@ $routes->group('pasien', function ($routes) {
     $routes->get('/', 'Pasien::index');
     $routes->get('pendaftaran_baru.php', 'Pasien::daftar_baru');
     $routes->get('pendaftaran.php', 'Pasien::daftar');
+    $routes->post('set_daftar.php', 'Pasien::set_daftar');
     $routes->post('set_daftar_baru.php', 'Pasien::set_daftar_baru');
     $routes->get('pdf_print.php', 'Pasien::pdf_antrian');
     $routes->get('data_dokter', 'Pasien::data_dokter');
