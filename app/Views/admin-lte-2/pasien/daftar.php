@@ -198,7 +198,7 @@
                   'id' => 'tgl_masuk',
                   'class' => 'form-control pull-right',
                   'placeholder' => 'Silahkan isi tgl periksa ...',
-                  'value' => set_value('tgl_masuk', '23-04-2025')
+                  'value' => set_value('tgl_masuk', date('m/d/Y'))
                 ]) ?>
               </div>
             </div>

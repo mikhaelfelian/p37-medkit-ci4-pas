@@ -192,13 +192,6 @@ class Pasien extends BaseController
                     'errors' => [
                         'required' => 'Poli harus dipilih'
                     ]
-                ],            
-                'tgl_masuk' => [
-                    'rules'  => 'required|valid_date[d-m-Y]',
-                    'errors' => [
-                        'required' => 'Tanggal periksa harus diisi',
-                        'valid_date' => 'Format tanggal tidak valid'
-                    ]
                 ]
             ];
 
