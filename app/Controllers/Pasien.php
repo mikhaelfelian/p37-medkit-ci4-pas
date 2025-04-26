@@ -123,6 +123,7 @@ class Pasien extends BaseController
             $dokter     = $this->request->getVar('dokter');
             $alergi     = $this->request->getVar('alergi');
             $tgl_masuk  = $this->request->getVar('tgl_masuk');
+            $jam_prks   = $this->request->getVar('jam_periksa');
             $captcha    = $this->request->getVar('recaptcha_response');
 
             // Validation rules
@@ -218,7 +219,7 @@ class Pasien extends BaseController
                 $data = [
                     'uuid'          => $uuid,
                     'tgl_simpan'    => date('Y-m-d H:i:s'),
-                    'tgl_masuk'     => tgl_indo_sys($tgl_masuk).' '.date('H:i:s'),
+                    'tgl_masuk'     => tgl_indo_sys($tgl_masuk).' '.date('H:i:s', strtotime($jam_prks)),
                     'id_ant'        => 0,
                     'id_gelar'      => (!empty($gelar) ? $gelar : '0'),
                     'id_poli'       => (!empty($poli) ? $poli : '0'),
