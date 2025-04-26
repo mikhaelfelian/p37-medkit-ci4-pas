@@ -19,7 +19,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group<?= validation_show_error('nik') ? ' has-error' : '' ?>">
-                                <label class="control-label">NIK <small><i>(* KTP / Passport / KIA)</i></small> <span class="text-danger">*</span></label>
+                                <label class="control-label">NIK <small><i>(* KTP / Passport / KIA)</i></small> <span
+                                        class="text-danger">*</span></label>
                                 <?= form_input([
                                     'name' => 'nik',
                                     'id' => 'nik',
@@ -38,7 +39,9 @@
                                         <select name="gelar" class="form-control required">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($gelar as $g): ?>
-                                                <option value="<?= $g->id ?>" <?= set_select('gelar', $g->id) ?>><?= $g->gelar ?></option>
+                                                <option value="<?= $g->id ?>" <?= set_select('gelar', $g->id) ?>>
+                                                    <?= $g->gelar ?>
+                                                </option>
                                             <?php endforeach; ?>
                                         </select>
                                         <?php if (session()->getFlashdata('errors.gelar')): ?>
@@ -48,7 +51,8 @@
                                 </div>
                                 <div class="col-xs-9">
                                     <div class="form-group<?= validation_show_error('nama') ? ' has-error' : '' ?>">
-                                        <label class="control-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                        <label class="control-label">Nama Lengkap <span
+                                                class="text-danger">*</span></label>
                                         <?= form_input([
                                             'name' => 'nama',
                                             'id' => 'nama',
@@ -194,19 +198,45 @@
                                     'value' => set_value('alergi')
                                 ]) ?>
                             </div>
-                            <div class="form-group<?= validation_show_error('tgl_masuk') ? ' has-error' : '' ?>">
-                                <label class="control-label">Tgl Periksa <span class="text-danger">*</span></label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div
+                                        class="form-group<?= validation_show_error('tgl_masuk') ? ' has-error' : '' ?>">
+                                        <label class="control-label">Tgl Periksa <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <?= form_input([
+                                                'name' => 'tgl_masuk',
+                                                'id' => 'tgl_masuk',
+                                                'class' => 'form-control pull-right',
+                                                'placeholder' => 'Silahkan isi tgl periksa ...',
+                                                'value' => set_value('tgl_masuk', date('m/d/Y'))
+                                            ]) ?>
+                                        </div>
                                     </div>
-                                    <?= form_input([
-                                        'name' => 'tgl_masuk',
-                                        'id' => 'tgl_masuk',
-                                        'class' => 'form-control pull-right',
-                                        'placeholder' => 'Silahkan isi tgl periksa ...',
-                                        'value' => set_value('tgl_masuk', '23-04-2025')
-                                    ]) ?>
+                                </div>
+                                <div class="col-md-6">
+                                    <div
+                                        class="form-group<?= validation_show_error('jam_periksa') ? ' has-error' : '' ?>">
+                                        <label class="control-label">Jam Periksa <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <?= form_input([
+                                                'name' => 'jam_periksa',
+                                                'id' => 'jam_periksa',
+                                                'class' => 'form-control',
+                                                'type' => 'time',
+                                                'placeholder' => 'Pilih jam periksa...',
+                                                'value' => set_value('jam_periksa', date('H:i'))
+                                            ]) ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -241,12 +271,11 @@
                 </div>
                 <div class="box-body">
                     <?php if (isset($_GET['id'])): ?>
-                        <iframe src="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" 
-                                style="width: 100%; height: 500px; border: none;"></iframe>
+                        <iframe src="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>"
+                            style="width: 100%; height: 500px; border: none;"></iframe>
                         <div class="text-center mt-3">
-                            <a href="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" 
-                               class="btn btn-primary" 
-                               target="_blank">
+                            <a href="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" class="btn btn-primary"
+                                target="_blank">
                                 <i class="fa fa-print"></i> Cetak Ulang
                             </a>
                         </div>
@@ -271,14 +300,14 @@
 <script>
     $(document).ready(function () {
         $('#dokter_container').hide();
-        
+
         $('#tgl_masuk').datepicker({
             autoclose: true,
             format: 'dd-mm-yyyy',
             todayHighlight: true,
             clearBtn: false // opsional, karena cuma bisa pilih 1 tanggal
         });
-        
+
         // Initialize datepicker
         $('#tgl_lahir').datepicker({
             dateFormat: 'dd-mm-yy',
@@ -325,15 +354,15 @@
         // Handle form submission
         $('form').on('submit', function (e) {
             e.preventDefault();
-            
+
             // Execute reCAPTCHA
-            grecaptcha.ready(function() {
+            grecaptcha.ready(function () {
                 grecaptcha.execute('<?= config('Recaptcha')->siteKey ?>', {
                     action: 'submit'
-                }).then(function(token) {
+                }).then(function (token) {
                     // Add token to form
                     $('#recaptchaResponse').val(token);
-                    
+
                     // Submit the form
                     this.submit();
                 }.bind(this));
@@ -341,7 +370,7 @@
         });
 
         // Clear validation on input
-        $('.required').on('input', function() {
+        $('.required').on('input', function () {
             $(this).removeClass('is-invalid');
         });
     });

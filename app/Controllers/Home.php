@@ -10,6 +10,7 @@
 namespace App\Controllers;
 
 use App\Models\VKamarModel;
+use App\Models\VDokterModel;
 use App\Models\PengaturanModel;
 
 class Home extends BaseController
@@ -21,6 +22,19 @@ class Home extends BaseController
     {
         $this->kamar        = new VKamarModel();
         $this->pengaturan   = new PengaturanModel();
+        $this->jadwal       = new VDokterModel();
+    }
+    public function data_dokter(){
+            $data = [
+                'title'         => 'Informasi Jadwal Dokter',
+                'subtitle'      => $this->pengaturan->judul,
+                'Pengaturan'    => $this->pengaturan,
+                'user'          => $this->ionAuth->user()->row(),
+                'jadwal'        => $this->jadwal->getJadwalDokter(),
+                'total_users'   => 1
+            ];
+    
+            return view($this->theme->getThemePath() . '/frontend/data_dokter', $data);
     }
 
     /**

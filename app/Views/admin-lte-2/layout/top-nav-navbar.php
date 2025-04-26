@@ -15,6 +15,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Rawat Inap <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="<?= base_url('pasien/data_kamar.php') ?>">Data Kamar</a></li>
+              <li><a href="<?= base_url('pasien/data_dokter.php') ?>">Jadwal Dokter</a></li>
             </ul>
           </li>
         </ul>
