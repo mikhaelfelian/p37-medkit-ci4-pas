@@ -308,7 +308,7 @@ class Pasien extends BaseController
      */
     public function set_daftar_batal()
     {
-        $uuid = $this->request->getGet('id') ?? $this->request->getGet('uuid');
+        $uuid = $this->request->getGet('uuid');
         if (empty($uuid)) {
             return redirect()->back()
                            ->with('error', 'UUID tidak valid');

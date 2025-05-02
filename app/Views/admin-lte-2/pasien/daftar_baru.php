@@ -278,7 +278,7 @@
                                 target="_blank">
                                 <i class="fa fa-print"></i> Cetak Ulang
                             </a>
-                            <a href="<?= base_url('pasien/set_daftar_batal.php?id=' . $_GET['id'] . '&route=pasien/pendaftaran_baru.php') ?>" class="btn btn-danger rounded-0 ml-2" onclick="return confirm('Apakah Anda yakin ingin membatalkan pendaftaran ini?')">
+                            <a href="<?= base_url('pasien/set_daftar_batal.php?uuid=' . $_GET['id'] . '&route=pasien/pendaftaran_baru.php') ?>" class="btn btn-danger rounded-0 ml-2" onclick="return confirm('Apakah Anda yakin ingin membatalkan pendaftaran ini?')">
                                 <i class="fa fa-times"></i> Batal
                             </a>
                         </div>
