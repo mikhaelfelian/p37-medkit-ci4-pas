@@ -314,6 +314,7 @@
   $(document).ready(function () {
     $('#dokter_container').hide();
 
+    var dateToday = new Date();
     $('#tgl_masuk').datepicker({
       autoclose: true,
       format: 'dd-mm-yyyy',

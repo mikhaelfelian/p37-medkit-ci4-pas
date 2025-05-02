@@ -323,7 +323,7 @@ class Pasien extends BaseController
 
             // Delete antrian if exists
             if (!empty($daftar->id_ant)) {
-                if (!$this->antrian->delete($daftar->id_ant)) {
+                if (!$this->antrian->where('id', $daftar->id_ant)->delete()) {
                     throw new \RuntimeException('Gagal menghapus data antrian');
                 }
             }
