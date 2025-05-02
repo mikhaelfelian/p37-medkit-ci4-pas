@@ -251,6 +251,16 @@ class Pasien extends BaseController
                     'status_hps'    => '0'
                 ];
 
+                // Check if there's already a registration with the same date, poli, and name
+                $existingRegistration = $this->model->where([
+                    'tgl_masuk' => tgl_indo_sys($tgl_masuk).' '.date('H:i:s', strtotime($jam_prks)),
+                    'id_poli'   => $poli
+                ])->first();
+                
+                if ($existingRegistration) {
+                    throw new \RuntimeException('Pendaftaran dengan nama, poli, dan tanggal yang sama sudah ada');
+                }
+                
                 if (!$this->model->insert($data)) {
                     throw new \RuntimeException('Gagal menyimpan data pendaftaran');
                 }
@@ -298,12 +308,7 @@ class Pasien extends BaseController
      */
     public function set_daftar_batal()
     {
-        if (!$this->ionAuth->loggedIn()) {
-            return redirect()->to(base_url())
-                           ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
-        }
-
-        $uuid = $this->request->getGet('uuid');
+        $uuid = $this->request->getGet('id') ?? $this->request->getGet('uuid');
         if (empty($uuid)) {
             return redirect()->back()
                            ->with('error', 'UUID tidak valid');
@@ -312,6 +317,7 @@ class Pasien extends BaseController
         try {
             // Get registration data
             $daftar = $this->model->where('uuid', $uuid)->first();
+
             if (!$daftar) {
                 throw new \RuntimeException('Data pendaftaran tidak ditemukan');
             }
@@ -322,8 +328,8 @@ class Pasien extends BaseController
             }
 
             // Delete antrian if exists
-            if (!empty($daftar->id_ant)) {
-                if (!$this->antrian->where('id', $daftar->id_ant)->delete()) {
+            if (!empty($daftar->id)) {
+                if (!$this->antrian->where('id_dft', $daftar->id)->delete()) {
                     throw new \RuntimeException('Gagal menghapus data antrian');
                 }
             }
@@ -333,8 +339,14 @@ class Pasien extends BaseController
                 throw new \RuntimeException('Gagal menghapus data pendaftaran');
             }
 
-            return redirect()->back()
-                           ->with('success', 'Pendaftaran berhasil dibatalkan');
+            $rute = $this->request->getGet('route');
+            if (!empty($rute)) {
+                return redirect()->to(base_url($rute))
+                               ->with('success', 'Pendaftaran berhasil dibatalkan');
+            } else {
+                return redirect()->back()
+                               ->with('success', 'Pendaftaran berhasil dibatalkan');
+            }
         } catch (\Exception $e) {
             return redirect()->back()
                            ->with('error', $e->getMessage());

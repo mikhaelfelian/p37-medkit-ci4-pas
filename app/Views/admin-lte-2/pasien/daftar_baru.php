@@ -274,9 +274,12 @@
                         <iframe src="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>"
                             style="width: 100%; height: 500px; border: none;"></iframe>
                         <div class="text-center mt-3">
-                            <a href="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" class="btn btn-primary"
+                            <a href="<?= base_url('pasien/pdf_print.php?id=' . $_GET['id']) ?>" class="btn btn-primary rounded-0"
                                 target="_blank">
                                 <i class="fa fa-print"></i> Cetak Ulang
+                            </a>
+                            <a href="<?= base_url('pasien/set_daftar_batal.php?id=' . $_GET['id'] . '&route=pasien/pendaftaran_baru.php') ?>" class="btn btn-danger rounded-0 ml-2" onclick="return confirm('Apakah Anda yakin ingin membatalkan pendaftaran ini?')">
+                                <i class="fa fa-times"></i> Batal
                             </a>
                         </div>
                     <?php else: ?>
