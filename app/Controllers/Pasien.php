@@ -207,6 +207,7 @@ class Pasien extends BaseController
             $sql_glr    = $this->gelar->find($gelar);
             $sql_poli   = $this->antrian_poli->where('id_poli', $poli)->first();
             $sql_pas    = $this->pasien->where('id_user', $id_user)->first();
+            $tgl_masuk  = tgl_indo_sys($tgl_masuk);
 
             try {
                 // Get next number for this poli and date
@@ -469,10 +470,7 @@ class Pasien extends BaseController
      *
      * @return mixed
      */
-    public function set_daftar_baru()
-    {
-        if ($this->ionAuth->loggedIn()) {
-            // Get form data
+    public function set_daftar_baru(){            // Get form data
             $nik        = $this->request->getVar('nik');
             $gelar      = $this->request->getVar('gelar');
             $nama       = $this->request->getVar('nama');
@@ -489,6 +487,7 @@ class Pasien extends BaseController
             $dokter     = $this->request->getVar('dokter');
             $alergi     = $this->request->getVar('alergi');
             $tgl_masuk  = $this->request->getVar('tgl_masuk');
+            $jam_prks   = $this->request->getVar('jam_prks');
             $captcha    = $this->request->getVar('recaptcha_response');
 
             # Verify reCAPTCHA
@@ -575,7 +574,7 @@ class Pasien extends BaseController
                     ]
                 ],            
                 'tgl_masuk' => [
-                    'rules'  => 'required|valid_date[d-m-Y]',
+                    'rules'  => 'required|valid_date[m/d/Y]',
                     'errors' => [
                         'required' => 'Tanggal periksa harus diisi',
                         'valid_date' => 'Format tanggal tidak valid'
@@ -584,15 +583,16 @@ class Pasien extends BaseController
                 'recaptcha_response' => 'required'
             ];
 
-            $validation->setRules($rules);
-            if (!$validation->run($this->request->getPost())) {
-                return redirect()->back()
-                               ->withInput()
-                               ->with('errors', $validation->getErrors());
-            }
+            // $validation->setRules($rules);
+            // if (!$validation->run($this->request->getPost())) {
+            //     return redirect()->back()
+            //                    ->withInput()
+            //                    ->with('errors', $validation->getErrors());
+            // }
 
             $sql_glr    = $this->gelar->find($gelar);
             $sql_poli   = $this->antrian_poli->where('id_poli', $poli)->first();
+            $tgl_masuk  = tgl_indo_sys($tgl_masuk);
 
             try {
                 $cek_nik = $this->model->cekNIK($nik);
@@ -675,10 +675,6 @@ class Pasien extends BaseController
                                ->withInput()
                                ->with('error', $e->getMessage());
             }
-        }else{
-            return redirect()->to(base_url())
-                             ->with('error', 'Authentifikasi gagal, silahkan login ulang !!');
-        }
     }
 
     /**

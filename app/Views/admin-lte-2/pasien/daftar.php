@@ -318,7 +318,12 @@
       autoclose: true,
       format: 'dd-mm-yyyy',
       todayHighlight: true,
-      clearBtn: false // opsional, karena cuma bisa pilih 1 tanggal
+      clearBtn: false, // opsional, karena cuma bisa pilih 1 tanggal
+      SetDate: new Date(),
+      changeMonth: true,
+      minDate: dateToday,
+      maxDate: '+60d', // Allow booking up to 30 days in advance
+      autoclose: true
     });
 
     // Initialize datepicker

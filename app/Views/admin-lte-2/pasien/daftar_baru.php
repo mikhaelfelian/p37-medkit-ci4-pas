@@ -301,11 +301,16 @@
     $(document).ready(function () {
         $('#dokter_container').hide();
 
+        var dateToday = new Date();
         $('#tgl_masuk').datepicker({
-            autoclose: true,
             format: 'dd-mm-yyyy',
             todayHighlight: true,
-            clearBtn: false // opsional, karena cuma bisa pilih 1 tanggal
+            clearBtn: false, // opsional, karena cuma bisa pilih 1 tanggal
+            SetDate: new Date(),
+            changeMonth: true,
+            minDate: dateToday,
+            maxDate: '+60d', // Allow booking up to 30 days in advance
+            autoclose: true
         });
 
         // Initialize datepicker
@@ -317,6 +322,7 @@
             showButtonPanel: true,
             closeText: 'Clear',
             defaultDate: new Date(),
+            maxDate: new Date(),
             onClose: function (dateText, inst) {
                 if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
                     document.getElementById(this.id).value = '';
